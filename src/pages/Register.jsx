@@ -58,7 +58,7 @@ const Register = () => {
     if (!validate()) return;
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', form);
+      const res = await axios.post('VITE_API_URL/api/auth/register', form);
       toast.success(res.data.message);
       navigate('/login');
     } catch (err) {

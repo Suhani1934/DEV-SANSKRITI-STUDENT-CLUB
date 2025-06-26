@@ -11,7 +11,7 @@ const ClubDetailModal = ({ show, handleClose, club }) => {
             </Modal.Header>
             <Modal.Body>
                 <img
-                    src={`http://localhost:5000/${club.image}`}
+                    src={`VITE_API_URL/${club.image}`}
                     alt={club.name}
                     className="img-fluid rounded mb-3"
                 />

@@ -8,7 +8,7 @@ const ManageEnrollments = () => {
 
     const fetchRequests = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/enrollment-requests', {
+            const res = await axios.get('VITE_API_URL/api/enrollment-requests', {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setRequests(res.data);
@@ -19,7 +19,7 @@ const ManageEnrollments = () => {
 
     const handleDecision = async (id, decision) => {
         try {
-            await axios.put(`http://localhost:5000/api/enrollment-requests/${id}`, {
+            await axios.put(`VITE_API_URL/api/enrollment-requests/${id}`, {
                 status: decision,
             }, {
                 headers: { Authorization: `Bearer ${token}` },

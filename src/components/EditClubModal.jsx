@@ -29,7 +29,7 @@ const EditClubModal = ({ show, handleClose, club, refreshClubs }) => {
         if (image) formData.append('image', image);
 
         try {
-            await axios.put(`http://localhost:5000/api/clubs/${club._id}`, formData, {
+            await axios.put(`VITE_API_URL/api/clubs/${club._id}`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',

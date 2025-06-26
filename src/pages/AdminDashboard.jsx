@@ -35,7 +35,7 @@ const AdminDashboard = () => {
     if (activeTab === 'students') fetchStudents();
 
     axios
-      .get('http://localhost:5000/api/auth/me', {
+      .get('VITE_API_URL/api/auth/me', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
   const fetchClubs = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/clubs', {
+      const res = await axios.get('VITE_API_URL/api/clubs', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -64,7 +64,7 @@ const AdminDashboard = () => {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/users/students', {
+      const res = await axios.get('VITE_API_URL/api/users/students', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -78,7 +78,7 @@ const AdminDashboard = () => {
   const handleDeleteStudent = async (id) => {
     if (!window.confirm('Are you sure you want to delete this student?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/students/${id}`, {
+      await axios.delete(`VITE_API_URL/api/students/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('Student deleted');
@@ -164,7 +164,7 @@ const AdminDashboard = () => {
                   <div className="col-md-6 col-lg-4" key={club._id}>
                     <div className="card shadow-sm h-100">
                       <img
-                        src={`http://localhost:5000/${club.image}`}
+                        src={`VITE_API_URL/${club.image}`}
                         alt={club.name}
                         className="card-img-top"
                         style={{ height: '200px', objectFit: 'cover' }}

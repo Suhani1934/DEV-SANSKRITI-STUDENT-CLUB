@@ -11,7 +11,7 @@ const ClubDetails = () => {
   useEffect(() => {
     const fetchClub = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/clubs/${id}`);
+        const res = await axios.get(`VITE_API_URL/api/clubs/${id}`);
         setClub(res.data);
       } catch (err) {
         console.error('Failed to load club details');
@@ -80,7 +80,7 @@ const ClubDetails = () => {
                 club.gallery.map((img, i) => (
                   <div className="col-md-3 mb-3" key={i}>
                     <img
-                      src={`http://localhost:5000${img}`}
+                      src={`VITE_API_URL${img}`}
                       alt={`gallery-${i}`}
                       className="img-fluid rounded shadow-sm gallery-img"
                     />

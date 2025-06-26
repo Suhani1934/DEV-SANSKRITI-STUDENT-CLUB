@@ -12,7 +12,7 @@ const ManageStudents = () => {
 
     const fetchStudents = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/users/students', {
+            const res = await axios.get('VITE_API_URL/api/users/students', {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setStudents(res.data);

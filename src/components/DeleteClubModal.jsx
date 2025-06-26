@@ -8,7 +8,7 @@ const DeleteClubModal = ({ show, handleClose, clubId, refreshClubs }) => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:5000/api/clubs/${clubId}`, {
+            await axios.delete(`VITE_API_URL/api/clubs/${clubId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             toast.success('Club deleted!');

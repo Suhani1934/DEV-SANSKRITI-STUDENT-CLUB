@@ -17,7 +17,7 @@ const ViewStudentModal = ({ show, handleClose, studentId }) => {
     const fetchStudentDetails = async () => {
         try {
             setLoading(true);
-            const res = await axios.get(`http://localhost:5000/api/users/students/${studentId}`, {
+            const res = await axios.get(`VITE_API_URL/api/users/students/${studentId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setStudent(res.data);

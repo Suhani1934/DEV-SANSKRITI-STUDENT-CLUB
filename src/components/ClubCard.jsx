@@ -5,7 +5,7 @@ const ClubCard = ({ club }) => {
   return (
     <div className="card club-card shadow-sm h-100">
       <img
-        src={`http://localhost:5000${club.image}`}
+        src={`VITE_API_URL${club.image}`}
         className="card-img-top club-img"
         alt={club.name}
       />

@@ -8,7 +8,7 @@ const Clubs = () => {
     useEffect(() => {
         const fetchClubs = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/clubs');
+                const res = await axios.get('VITE_API_URL/api/clubs');
                 setClubs(res.data);
             } catch (err) {
                 console.error('Error fetching clubs');
