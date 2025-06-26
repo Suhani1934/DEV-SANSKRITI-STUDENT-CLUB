@@ -26,7 +26,7 @@ const AddClubModal = ({ show, handleClose, refreshClubs }) => {
         formData.append('image', image);
 
         try {
-            await axios.post('${import.meta.env.VITE_API_URL}/api/clubs', formData, {
+            await axios.post('/api/clubs', formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',

@@ -39,7 +39,7 @@ const StudentDashboard = () => {
 
   const fetchClubs = async () => {
     try {
-      const res = await axios.get('${import.meta.env.VITE_API_URL}/api/clubs');
+      const res = await axios.get('/api/clubs');
       setClubs(res.data);
     } catch {
       toast.error('Failed to load clubs');
@@ -48,7 +48,7 @@ const StudentDashboard = () => {
 
   const fetchStudent = async () => {
     try {
-      const res = await axios.get('${import.meta.env.VITE_API_URL}/api/users/me', {
+      const res = await axios.get('/api/users/me', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -63,7 +63,7 @@ const StudentDashboard = () => {
 
   const fetchEnrolledClubs = async () => {
     try {
-      const res = await axios.get('${import.meta.env.VITE_API_URL}/api/users/me', {
+      const res = await axios.get('/api/users/me', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const clubIds = res.data.enrolledClubs.map((club) => club._id);
@@ -75,10 +75,10 @@ const StudentDashboard = () => {
 
   const fetchRequestedClubIds = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/me`, {
+      const res = await axios.get(`/api/users/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const res2 = await axios.get(`${import.meta.env.VITE_API_URL}/api/enrollment-requests/my-requests`, {
+      const res2 = await axios.get(`/api/enrollment-requests/my-requests`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -94,7 +94,7 @@ const StudentDashboard = () => {
 
   const fetchEnrollmentRequests = async () => {
     try {
-      const res = await axios.get('${import.meta.env.VITE_API_URL}/api/enrollment-requests/my-requests', {
+      const res = await axios.get('/api/enrollment-requests/my-requests', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEnrollmentRequests(res.data);
@@ -111,7 +111,7 @@ const StudentDashboard = () => {
     }
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/enrollment-requests/${clubId}`, {}, {
+      await axios.post(`/api/enrollment-requests/${clubId}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('Enrollment request sent!');
@@ -124,7 +124,7 @@ const StudentDashboard = () => {
 
   const handleUnenroll = async (clubId) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/api/enroll/unenroll/${clubId}`, {
+      await axios.delete(`/api/enroll/unenroll/${clubId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('Unenrolled successfully!');
@@ -139,7 +139,7 @@ const StudentDashboard = () => {
     <div className="col-md-6 col-lg-4" key={club._id}>
       <div className="card h-100 shadow-sm">
         <img
-          src={`${import.meta.env.VITE_API_URL}/${club.image}`}
+          src={`/${club.image}`}
           className="card-img-top"
           alt={club.name}
           style={{ height: '180px', objectFit: 'cover' }}
