@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import api from '../api';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const ManageEnrollments = () => {
@@ -8,7 +8,7 @@ const ManageEnrollments = () => {
 
     const fetchRequests = async () => {
         try {
-            const res = await api.get('/api/enrollment-requests', {
+            const res = await axios.get('${import.meta.env.VITE_API_URL}/api/enrollment-requests', {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setRequests(res.data);
@@ -19,7 +19,7 @@ const ManageEnrollments = () => {
 
     const handleDecision = async (id, decision) => {
         try {
-            await axios.put(`/api/enrollment-requests/${id}`, {
+            await axios.put(`${import.meta.env.VITE_API_URL}/api/enrollment-requests/${id}`, {
                 status: decision,
             }, {
                 headers: { Authorization: `Bearer ${token}` },

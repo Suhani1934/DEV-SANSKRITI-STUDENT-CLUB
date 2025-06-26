@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import api from '../api';
+import axios from 'axios';
 import './ClubDetails.css';
 
 const ClubDetails = () => {
@@ -11,7 +11,7 @@ const ClubDetails = () => {
   useEffect(() => {
     const fetchClub = async () => {
       try {
-        const res = await api.get(`/api/clubs/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/clubs/${id}`);
         setClub(res.data);
       } catch (err) {
         console.error('Failed to load club details');
@@ -80,7 +80,7 @@ const ClubDetails = () => {
                 club.gallery.map((img, i) => (
                   <div className="col-md-3 mb-3" key={i}>
                     <img
-                      src={`${img}`}
+                      src={`${import.meta.env.VITE_API_URL}${img}`}
                       alt={`gallery-${i}`}
                       className="img-fluid rounded shadow-sm gallery-img"
                     />

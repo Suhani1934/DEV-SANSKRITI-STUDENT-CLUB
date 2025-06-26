@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Button, Spinner } from 'react-bootstrap';
-import api from '../api';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const ViewStudentModal = ({ show, handleClose, studentId }) => {
@@ -17,7 +17,7 @@ const ViewStudentModal = ({ show, handleClose, studentId }) => {
     const fetchStudentDetails = async () => {
         try {
             setLoading(true);
-            const res = await api.get(`/api/users/students/${studentId}`, {
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/students/${studentId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setStudent(res.data);

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import api from '../api';
+import axios from 'axios';
 
 function Login() {
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await  api.post('/api/auth/login', {
+            const res = await axios.post('${import.meta.env.VITE_API_URL}/api/auth/login', {
                 email: form.email,
                 password: form.password
             });

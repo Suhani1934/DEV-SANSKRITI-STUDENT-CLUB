@@ -19,7 +19,12 @@ const AdminSidebar = ({ activeTab, setActiveTab }) => {
                 >
                     Manage Clubs
                 </button>
-                
+                <button
+                    className={`btn ${activeTab === 'clubs' ? 'btn-warning' : 'btn-outline-warning'}`}
+                    onClick={() => setActiveTab('clubs')}
+                >
+                    Manage Clubs
+                </button>
                 <button
                     className={`btn w-100 text-start mb-2 ${activeTab === 'enrollments' ? 'btn-warning' : 'btn-outline-warning'}`}
                     onClick={() => setActiveTab('enrollments')}
