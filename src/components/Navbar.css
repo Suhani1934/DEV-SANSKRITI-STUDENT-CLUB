@@ -1,0 +1,32 @@
+.animated-nav {
+    transition: all 0.4s ease-in-out;
+    background-color: #fff;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #333;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.nav-link:hover {
+    color: #ffc107;
+    transform: scale(1.05);
+}
+
+.navbar-brand span {
+    transition: color 0.3s;
+}
+
+.navbar-brand:hover span {
+    color: #0d6efd;
+}
+
+.btn-outline-danger {
+    transition: all 0.3s;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}

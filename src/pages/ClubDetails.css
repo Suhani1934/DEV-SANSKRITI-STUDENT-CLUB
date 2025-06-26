@@ -1,0 +1,28 @@
+.club-details-page .nav-link {
+    transition: all 0.3s ease;
+}
+
+.club-details-page .nav-link:hover {
+    background-color: #ffc107;
+    color: #fff !important;
+}
+
+.club-details-page .nav-link.active {
+    background-color: #0d6efd !important;
+    color: #fff !important;
+}
+
+.club-details-page .tab-content {
+    min-height: 200px;
+}
+
+.gallery-img {
+    height: 150px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+    transform: scale(1.05);
+}

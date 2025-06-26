@@ -1,0 +1,34 @@
+/* Simple fade-in animation */
+.animated-fade {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effect on register button */
+.register-btn {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+.register-btn:hover {
+    background-color: #ffc107;
+    transform: scale(1.02);
+}
+
+/* Form Card */
+.register-form {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+}
