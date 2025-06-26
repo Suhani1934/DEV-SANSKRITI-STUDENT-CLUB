@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import axios from 'axios';
+import api from '../api';
 import { toast } from 'react-toastify';
 
 const EditClubModal = ({ show, handleClose, club, refreshClubs }) => {
@@ -29,7 +29,7 @@ const EditClubModal = ({ show, handleClose, club, refreshClubs }) => {
         if (image) formData.append('image', image);
 
         try {
-            await axios.put(`VITE_API_URL/api/clubs/${club._id}`, formData, {
+            await axios.put(`/api/clubs/${club._id}`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',

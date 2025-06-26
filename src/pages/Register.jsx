@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import courses from '../data/courses';
@@ -58,7 +58,7 @@ const Register = () => {
     if (!validate()) return;
 
     try {
-      const res = await axios.post('VITE_API_URL/api/auth/register', form);
+      const res = await  api.post('/api/auth/register', form);
       toast.success(res.data.message);
       navigate('/login');
     } catch (err) {

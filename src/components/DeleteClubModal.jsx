@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import axios from 'axios';
+import api from '../api';
 import { toast } from 'react-toastify';
 
 const DeleteClubModal = ({ show, handleClose, clubId, refreshClubs }) => {
@@ -8,7 +8,7 @@ const DeleteClubModal = ({ show, handleClose, clubId, refreshClubs }) => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`VITE_API_URL/api/clubs/${clubId}`, {
+            await axios.delete(`/api/clubs/${clubId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             toast.success('Club deleted!');

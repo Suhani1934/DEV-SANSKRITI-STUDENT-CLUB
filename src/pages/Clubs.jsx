@@ -1,6 +1,6 @@
 import ClubCard from '../components/clubCard';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 
 const Clubs = () => {
     const [clubs, setClubs] = useState([]);
@@ -8,7 +8,7 @@ const Clubs = () => {
     useEffect(() => {
         const fetchClubs = async () => {
             try {
-                const res = await axios.get('VITE_API_URL/api/clubs');
+                const res = await api.get('/api/clubs');
                 setClubs(res.data);
             } catch (err) {
                 console.error('Error fetching clubs');

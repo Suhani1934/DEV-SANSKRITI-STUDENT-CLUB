@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { toast } from 'react-toastify';
 
 const ManageStudents = () => {
@@ -12,7 +12,7 @@ const ManageStudents = () => {
 
     const fetchStudents = async () => {
         try {
-            const res = await axios.get('VITE_API_URL/api/users/students', {
+            const res = await api.get('/api/users/students', {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setStudents(res.data);
