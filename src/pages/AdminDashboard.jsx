@@ -9,6 +9,8 @@ import ManageStudents from '../components/ManageStudents';
 
 // import ViewStudentModal from '../components/ViewStudentModal';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [adminName, setAdminName] = useState('');
@@ -35,7 +37,7 @@ const AdminDashboard = () => {
     if (activeTab === 'students') fetchStudents();
 
     axios
-      .get('/api/auth/me', {
+      .get(`${API_URL}/api/auth/me`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -49,7 +51,7 @@ const AdminDashboard = () => {
   const fetchClubs = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('/api/clubs', {
+      const res = await axios.get(`${API_URL}/api/clubs`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -64,7 +66,7 @@ const AdminDashboard = () => {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get('/api/users/students', {
+      const res = await axios.get(`${API_URL}/api/users/students`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -78,7 +80,7 @@ const AdminDashboard = () => {
   const handleDeleteStudent = async (id) => {
     if (!window.confirm('Are you sure you want to delete this student?')) return;
     try {
-      await axios.delete(`/api/students/${id}`, {
+      await axios.delete(`${API_URL}/api/students/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('Student deleted');

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ManageStudents = () => {
     const [students, setStudents] = useState([]);
@@ -12,7 +13,7 @@ const ManageStudents = () => {
 
     const fetchStudents = async () => {
         try {
-            const res = await axios.get('/api/users/students', {
+            const res = await axios.get(`${API_URL}/api/users/students`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setStudents(res.data);
