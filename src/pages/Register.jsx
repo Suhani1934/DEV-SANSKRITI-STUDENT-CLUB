@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import courses from '../data/courses';
-const API_URL = import.meta.env.VITE_API_URL;
+
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -59,7 +59,7 @@ const Register = () => {
     if (!validate()) return;
 
     try {
-      const res = await axios.post(`${API_URL}/api/auth/register`, form);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, form);
       toast.success(res.data.message);
       navigate('/login');
     } catch (err) {

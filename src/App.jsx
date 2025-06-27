@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavig
 import { useEffect } from 'react';
 
 import Navbar from './components/Navbar';
-import { Home } from './pages/Home';
+import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Welcome from './pages/Welcome';
