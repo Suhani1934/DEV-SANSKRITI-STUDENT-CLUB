@@ -20,10 +20,10 @@ const Footer = () => {
                     <div className="col-md-4 mb-4 mb-md-0 text-center">
                         <h5 className="mb-3 text-yellow">Quick Links</h5>
                         <ul className="list-unstyled">
-                            <li><a href="/" className="footer-link">Home</a></li>
-                            <li><a href="/clubs" className="footer-link">Clubs</a></li>
-                            <li><a href="/login" className="footer-link">Login</a></li>
-                            <li><a href="/register" className="footer-link">Register</a></li>
+                            <li><Link to="/" className="footer-link">Home</Link></li>
+                            <li><Link to="/clubs" className="footer-link">Clubs</Link></li>
+                            <li><Link to="/login" className="footer-link">Login</Link></li>
+                            <li><Link to="/register" className="footer-link">Register</Link></li>
                         </ul>
                     </div>
 
