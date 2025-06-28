@@ -12,6 +12,8 @@ import AdminDashboard from './pages/AdminDashboard';
 // import ClubDetails from './pages/ClubDetails'
 // import ClubCard from './components/clubCard';
 
+import Footer from './components/Footer';
+
 import RoleBasedRoute from './components/RoleBasedRoute';
 import { isTokenExpired } from './utils/auth';
 
@@ -36,50 +38,53 @@ function App() {
 
 
   return (
-    <>
+    <div className='d-flex flex-column min-vh-100'>
       <Navbar />
       <ToastContainer position="bottom-left" autoClose={2000} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+      <main className='flex-grow-1'>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route
-          path="/welcome"
-          element={
-            <Welcome />
-          }
-        />
+          <Route
+            path="/welcome"
+            element={
+              <Welcome />
+            }
+          />
 
-        {/* <Route path="/clubs" element={<ClubCard />} /> */}
+          {/* <Route path="/clubs" element={<ClubCard />} /> */}
 
-        {/* Student-only route */}
-        <Route
-          path="/dashboard"
-          element={
-            <RoleBasedRoute allowedRole="student">
-              <StudentDashboard />
-            </RoleBasedRoute>
-          }
-        />
-        {/* <Route path="/club-details" element={<RoleBasedRoute allowedRole="student">
+          {/* Student-only route */}
+          <Route
+            path="/dashboard"
+            element={
+              <RoleBasedRoute allowedRole="student">
+                <StudentDashboard />
+              </RoleBasedRoute>
+            }
+          />
+          {/* <Route path="/club-details" element={<RoleBasedRoute allowedRole="student">
           <ClubDetails />
         </RoleBasedRoute>} /> */}
 
-        {/* Admin-only route */}
-        <Route
-          path="/admin"
-          element={
-            <RoleBasedRoute allowedRole="admin">
-              <AdminDashboard />
-            </RoleBasedRoute>
-          }
-        />
+          {/* Admin-only route */}
+          <Route
+            path="/admin"
+            element={
+              <RoleBasedRoute allowedRole="admin">
+                <AdminDashboard />
+              </RoleBasedRoute>
+            }
+          />
 
-        {/* 404 Page Not Found */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </>
+          {/* 404 Page Not Found */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 

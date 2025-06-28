@@ -1,0 +1,42 @@
+.footer {
+    background: #002f6c;
+    /* Deep blue */
+    color: #ffffff;
+}
+
+.footer-logo {
+    width: 120px;
+    height: auto;
+}
+
+.text-yellow {
+    color: #f1c40f;
+}
+
+.footer-link {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #f1c40f;
+    text-decoration: underline;
+}
+
+.social-icon {
+    color: #ffffff;
+    font-size: 1.5rem;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-icon:hover {
+    color: #f1c40f;
+    transform: translateY(-5px) scale(1.2);
+}
+
+.border-yellow {
+    border-color: #f1c40f !important;
+}
