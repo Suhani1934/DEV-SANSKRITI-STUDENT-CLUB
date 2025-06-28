@@ -1,6 +1,6 @@
 import React from 'react';
-import 'bootstrap-icons/font/bootstrap-icons.css'; // ensure bootstrap-icons installed
-import './Footer.css'; // for extra styling
+import { Link } from 'react-router-dom';
+import './Footer.css';
 
 const Footer = () => {
     return (
@@ -10,7 +10,9 @@ const Footer = () => {
 
                     {/* Logo and About */}
                     <div className="col-md-4 mb-4 mb-md-0 text-center text-md-start">
-                        <img src="/university-logo.png" alt="University Logo" className="footer-logo mb-2" />
+                        <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
+                            <img src="DSVV_LOGO_WHITE.png" alt="University Logo" className="footer-logo mb-2" />
+                        </Link>
                         <p className="small">Empowering students through creativity and collaboration at our vibrant university clubs.</p>
                     </div>
 
@@ -29,10 +31,11 @@ const Footer = () => {
                     <div className="col-md-4 text-center text-md-end">
                         <h5 className="mb-3 text-yellow">Connect with us</h5>
                         <div className="d-flex justify-content-center justify-content-md-end gap-3">
-                            <a href="#" className="social-icon"><i className="bi bi-facebook"></i></a>
-                            <a href="#" className="social-icon"><i className="bi bi-twitter"></i></a>
-                            <a href="#" className="social-icon"><i className="bi bi-instagram"></i></a>
-                            <a href="#" className="social-icon"><i className="bi bi-linkedin"></i></a>
+                            <a href="https://www.facebook.com/dsvvofficial/" className="social-icon"><i className="bi bi-facebook"></i></a>
+                            <a href="https://x.com/dsvvofficial" className="social-icon"><i className="bi bi-twitter"></i></a>
+                            <a href="https://youtube.com/@devsanskritivishwavidyalay4081?si=njop_1bOkVZyFFN" className="social-icon"><i className="bi bi-youtube"></i></a>
+                            <a href="https://www.instagram.com/dsvvofficial?igsh=MTBhYjNqMHluZ3ZqNQ==" className="social-icon"><i className="bi bi-instagram"></i></a>
+                            <a href="https://www.linkedin.com/company/devsanskritivishwavidyalya" className="social-icon"><i className="bi bi-linkedin"></i></a>
                         </div>
                     </div>
 
@@ -40,7 +43,7 @@ const Footer = () => {
 
                 {/* Copyright */}
                 <div className="text-center pt-4 mt-4 border-top border-yellow small">
-                    &copy; {new Date().getFullYear()} University Clubs Portal. All Rights Reserved.
+                    &copy; {new Date().getFullYear()} Dev sanskriti Student's Club. All Rights Reserved.
                 </div>
             </div>
         </footer>

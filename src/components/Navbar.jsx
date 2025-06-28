@@ -40,7 +40,7 @@ const Navbar = () => {
         <nav className={`navbar navbar-expand-lg navbar-dark sticky-top shadow animated-navbar ${scrolled ? 'navbar-shrink' : ''}`}>
             <div className="container py-2">
                 <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
-                    <img src="logo.png" alt="Logo" height="50" />
+                    <img src="DSVV_LOGO_BLACK.png" alt="Logo" height="50" />
                 </Link>
 
                 <button

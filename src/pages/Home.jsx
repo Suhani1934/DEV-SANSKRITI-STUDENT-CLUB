@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import GallerySlider from '../components/GallerySlider';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,7 +13,7 @@ import banner5 from '../assets/Banners/banner5.jpg'
 const Home = () => {
   const [clubs, setClubs] = useState([]);
 
-  const galleryImages = [banner1,banner2,banner3,banner4,banner5,banner1,banner2,banner3,banner4,banner5,banner1,banner2,banner3,banner4,banner5];
+  const galleryImages = [banner1, banner2, banner3, banner4, banner5, banner1, banner2, banner3, banner4, banner5, banner1, banner2, banner3, banner4, banner5];
   useEffect(() => {
     const fetchClubs = async () => {
       try {
@@ -32,7 +33,9 @@ const Home = () => {
         <div className="container">
           <h1 className="display-4 animate__animated animate__fadeInDown">Dev Sanskriti Student's Clubs</h1>
           <p className="lead animate__animated animate__fadeInUp">Explore, join and enjoy amazing student clubs!</p>
-          <a href="/register" className="btn btn-warning btn-lg mt-3 animate__animated animate__fadeInUp">Get Started</a>
+          <Link to="/register" className="btn btn-warning btn-lg mt-3 animate__animated animate__fadeInUp">
+            <i className="bi bi-pencil-square me-1"></i>Get Started
+          </Link>
         </div>
       </section>
 

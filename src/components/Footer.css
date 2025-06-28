@@ -40,3 +40,13 @@
 .border-yellow {
     border-color: #f1c40f !important;
 }
+
+.footer-logo {
+    height: 7rem;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.1);
+}
