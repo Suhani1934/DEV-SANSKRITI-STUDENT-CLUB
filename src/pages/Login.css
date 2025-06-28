@@ -1,0 +1,46 @@
+body, html {
+    background-color: #f8f9fa; /* Light neutral background */
+  }
+  
+  .login-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Subtle gradient */
+  }
+  
+  .login-card {
+    background-color: #fff;
+    backdrop-filter: blur(6px);
+    border: none;
+  }
+  
+  .login-logo {
+    width: 100px;
+    height: auto;
+  }
+  
+  .text-accent {
+    color: #002f6c !important; /* Use blue only for accents */
+  }
+  
+  .btn-yellow {
+    background-color: #f1c40f;
+    color: #002f6c;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .btn-yellow:hover {
+    background-color: #d4ac0d;
+    color: #fff;
+  }
+  
+  .input-group-text {
+    background-color: #f1c40f;
+    color: #002f6c;
+    border: none;
+  }
+  
+  .form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(241, 196, 15, 0.3);
+  }
+  

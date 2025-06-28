@@ -3,7 +3,6 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-
 const AddClubModal = ({ show, handleClose, refreshClubs }) => {
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');

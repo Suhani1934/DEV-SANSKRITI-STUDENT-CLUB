@@ -1,7 +1,7 @@
 const StudentSidebar = ({ activeTab, setActiveTab }) => {
     return (
         <div className="bg-light p-3 h-100 border-end shadow-sm">
-            <h5 className="text-primary fw-bold mb-4">Student Portal</h5>
+            <h5 className="text-primary fw-bold mb-4">Dashboard</h5>
 
             <div className="d-flex flex-column gap-3">
                 <button

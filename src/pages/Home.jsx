@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import GallerySlider from '../components/GallerySlider';
+import { toast } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './Home.css';
+import GallerySlider from '../components/GallerySlider';
+import ClubCard from '../components/ClubCard';
+
 import banner1 from '../assets/Banners/banner1.jpg'
 import banner2 from '../assets/Banners/banner2.jpg'
 import banner3 from '../assets/Banners/banner3.jpeg'
@@ -14,17 +18,31 @@ const Home = () => {
   const [clubs, setClubs] = useState([]);
 
   const galleryImages = [banner1, banner2, banner3, banner4, banner5, banner1, banner2, banner3, banner4, banner5, banner1, banner2, banner3, banner4, banner5];
+
   useEffect(() => {
-    const fetchClubs = async () => {
-      try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/clubs`);
-        setClubs(res.data);
-      } catch {
-        console.error('Failed to load clubs');
-      }
-    };
     fetchClubs();
   }, []);
+
+  const fetchClubs = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/clubs`);
+      setClubs(res.data);
+    } catch {
+      console.error('Failed to load clubs');
+    }
+  };
+  fetchClubs();
+
+  const handleEnroll = async (clubId) => {
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/enroll/${clubId}`, {}, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
+      toast.success('Enrollment request sent!');
+    } catch (err) {
+      toast.error(err.response?.data?.error || 'Enrollment failed');
+    }
+  };
 
   return (
     <div className="home-page">
@@ -43,22 +61,15 @@ const Home = () => {
       <section className="container py-5">
         <h2 className="mb-4 text-center text-primary">Our Clubs</h2>
         <div className="row g-4">
-          {clubs.map((club) => (
-            <div className="col-md-6 col-lg-4" key={club._id}>
-              <div className="card h-100 club-card shadow border-0 animate__animated animate__fadeInUp">
-                <img
-                  src={`${import.meta.env.VITE_API_URL}/${club.image}`}
-                  className="card-img-top club-image"
-                  alt={club.name}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{club.name}</h5>
-                  <p className="card-text">{club.description?.slice(0, 100)}...</p>
-                  <button className="btn btn-outline-primary btn-sm">View Details</button>
-                </div>
+          {clubs.length > 0 ? (
+            clubs.map((club) => (
+              <div className="col-md-6 col-lg-4" key={club._id}>
+                <ClubCard club={club} onEnroll={handleEnroll} />
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className="text-center text-muted">No clubs found.</p>
+          )}
         </div>
       </section>
 

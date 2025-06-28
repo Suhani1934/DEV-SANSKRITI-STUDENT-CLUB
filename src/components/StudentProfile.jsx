@@ -10,15 +10,12 @@ const StudentProfile = ({ student }) => {
     return (
         <div className="card p-4 shadow-lg rounded-4 border-0 bg-light">
             <div className="card-body">
-                <h4 className="text-center mb-4 text-primary fw-bold">🎓 Student Profile</h4>
                 <div className="row gy-3">
                     <ProfileItem icon={<FaUser />} label="Name" value={name} />
                     <ProfileItem icon={<FaEnvelope />} label="Email" value={email} />
                     <ProfileItem icon={<FaPhone />} label="Phone" value={phone} />
                     <ProfileItem icon={<FaGraduationCap />} label="Course" value={course} />
                     <ProfileItem icon={<FaRegIdCard />} label="Year" value={year} />
-                    {/* <ProfileItem icon="🧑‍💼" label="Role" value={role ? role.charAt(0).toUpperCase() + role.slice(1) : 'N/A'} /> */}
-
                 </div>
             </div>
         </div>

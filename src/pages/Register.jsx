@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import courses from '../data/courses';
-
+import './Register.css';
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -24,22 +24,16 @@ const Register = () => {
 
   const validate = () => {
     const newErrors = {};
-
     if (!form.name.trim()) newErrors.name = 'Name is required';
     if (!form.email || !/\S+@\S+\.\S+/.test(form.email)) newErrors.email = 'Valid email is required';
     if (!form.phone || !/^[0-9]{10}$/.test(form.phone)) newErrors.phone = 'Valid 10-digit phone number required';
     if (!form.course) newErrors.course = 'Please select a course';
     if (!form.year) newErrors.year = 'Please select a year';
 
-    // Password pattern validation
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&])[A-Za-z\d@$!%*?#&]{8,}$/;
-
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&])[A-Za-z\d@$!%*?#&]{8,}$/;
     if (!form.password || !passwordRegex.test(form.password)) {
-      newErrors.password =
-        'Password must be at least 8 characters, include uppercase, lowercase, number, and special character';
+      newErrors.password = 'Password must be at least 8 characters, include uppercase, lowercase, number, and special character';
     }
-
     if (form.password !== form.confirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match';
     }
@@ -47,7 +41,6 @@ const Register = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -68,119 +61,72 @@ const Register = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h3 className="text-center mb-4">Student Registration</h3>
-      <form onSubmit={handleSubmit} className="col-md-6 mx-auto border p-4 rounded shadow bg-white">
-
-        {/* Name */}
-        <div className="mb-3">
-          <label className="form-label">Full Name</label>
-          <input
-            type="text"
-            className={`form-control ${errors.name && 'is-invalid'}`}
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-          />
-          {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+    <div className="register-container d-flex justify-content-center align-items-center">
+      <div className="card register-card shadow-lg rounded-4 p-4 w-100" style={{ maxWidth: '500px' }}>
+        <div className="text-center mb-4">
+          <img src="registration.png" alt="Logo" className="register-logo mb-2" />
+          <h3 className="text-accent fw-bold">Create Account</h3>
         </div>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group mb-3">
+            <span className="input-group-text"><i className="bi bi-person-fill"></i></span>
+            <input type="text" className={`form-control ${errors.name && 'is-invalid'}`} name="name" placeholder="Full Name" value={form.name} onChange={handleChange} />
+            {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+          </div>
 
-        {/* Email */}
-        <div className="mb-3">
-          <label className="form-label">Email Address</label>
-          <input
-            type="email"
-            className={`form-control ${errors.email && 'is-invalid'}`}
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-          />
-          {errors.email && <div className="invalid-feedback">{errors.email}</div>}
-        </div>
+          <div className="input-group mb-3">
+            <span className="input-group-text"><i className="bi bi-envelope-fill"></i></span>
+            <input type="email" className={`form-control ${errors.email && 'is-invalid'}`} name="email" placeholder="Email" value={form.email} onChange={handleChange} />
+            {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+          </div>
 
-        {/* Phone */}
-        <div className="mb-3">
-          <label className="form-label">Phone Number</label>
-          <input
-            type="text"
-            className={`form-control ${errors.phone && 'is-invalid'}`}
-            name="phone"
-            value={form.phone}
-            onChange={handleChange}
-          />
-          {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
-        </div>
+          <div className="input-group mb-3">
+            <span className="input-group-text"><i className="bi bi-telephone-fill"></i></span>
+            <input type="text" className={`form-control ${errors.phone && 'is-invalid'}`} name="phone" placeholder="Phone Number" value={form.phone} onChange={handleChange} />
+            {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
+          </div>
 
-        {/* Course */}
-        <div className="mb-3">
-          <label className="form-label">Course</label>
-          <select
-            className={`form-select ${errors.course && 'is-invalid'}`}
-            name="course"
-            value={form.course}
-            onChange={handleChange}
-          >
-            <option value="">-- Select Course --</option>
-            {courses.map((course) => (
-              <option key={course} value={course}>
-                {course}
-              </option>
-            ))}
-          </select>
-          {errors.course && <div className="invalid-feedback">{errors.course}</div>}
-        </div>
+          <div className="mb-3">
+            <select className={`form-select ${errors.course && 'is-invalid'}`} name="course" value={form.course} onChange={handleChange}>
+              <option value="">-- Select Course --</option>
+              {courses.sort().map(course => (
+                <option key={course} value={course}>{course}</option>
+              ))}
+            </select>
+            {errors.course && <div className="invalid-feedback">{errors.course}</div>}
+          </div>
 
-        {/* Year */}
-        <div className="mb-3">
-          <label className="form-label">Year</label>
-          <select
-            className={`form-select ${errors.year && 'is-invalid'}`}
-            name="year"
-            value={form.year}
-            onChange={handleChange}
-          >
-            <option value="">-- Select Year --</option>
-            {years.map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-          {errors.year && <div className="invalid-feedback">{errors.year}</div>}
-        </div>
+          <div className="mb-3">
+            <select className={`form-select ${errors.year && 'is-invalid'}`} name="year" value={form.year} onChange={handleChange}>
+              <option value="">-- Select Year --</option>
+              {years.map(year => (
+                <option key={year} value={year}>{year}</option>
+              ))}
+            </select>
+            {errors.year && <div className="invalid-feedback">{errors.year}</div>}
+          </div>
 
-        {/* Password */}
-        <div className="mb-3">
-          <label className="form-label">Password</label>
-          <input
-            type="password"
-            className={`form-control ${errors.password && 'is-invalid'}`}
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-          />
-          {errors.password && <div className="invalid-feedback">{errors.password}</div>}
-        </div>
+          <div className="input-group mb-3">
+            <span className="input-group-text"><i className="bi bi-lock-fill"></i></span>
+            <input type="password" className={`form-control ${errors.password && 'is-invalid'}`} name="password" placeholder="Password" value={form.password} onChange={handleChange} />
+            {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+          </div>
 
-        {/* Confirm Password */}
-        <div className="mb-3">
-          <label className="form-label">Confirm Password</label>
-          <input
-            type="password"
-            className={`form-control ${errors.confirmPassword && 'is-invalid'}`}
-            name="confirmPassword"
-            value={form.confirmPassword}
-            onChange={handleChange}
-          />
-          {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
-        </div>
+          <div className="input-group mb-4">
+            <span className="input-group-text"><i className="bi bi-lock-fill"></i></span>
+            <input type="password" className={`form-control ${errors.confirmPassword && 'is-invalid'}`} name="confirmPassword" placeholder="Confirm Password" value={form.confirmPassword} onChange={handleChange} />
+            {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
+          </div>
 
-        <button type="submit" className="btn btn-primary w-100">Register</button>
+          <button type="submit" className="btn btn-yellow w-100 py-2 fw-bold d-flex justify-content-center align-items-center gap-2">
+            <i className="bi bi-person-plus-fill"></i> Register
+          </button>
 
-        <p className="mt-3 text-center">
-          Already have an account? <a href="/login">Login here</a>
-        </p>
-      </form>
+          <p className="mt-3 text-center">
+            Already have an account? <a href="/login" className="text-accent">Login here</a>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

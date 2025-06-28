@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import StudentSidebar from '../components/StudentSidebar';
 import StudentProfile from '../components/StudentProfile';
-import ClubDetailModal from '../components/ClubDetailModal';
 import { toast } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,12 +18,7 @@ const StudentDashboard = () => {
 
   const [enrollmentRequests, setEnrollmentRequests] = useState([]);
 
-
   const [requestedClubIds, setRequestedClubIds] = useState([]);
-
-
-  // const [selectedClub, setSelectedClub] = useState(null);
-  // const [showModal, setShowModal] = useState(false);
 
   const token = localStorage.getItem('token');
 
@@ -168,8 +162,6 @@ const StudentDashboard = () => {
               Click here to Enroll
             </button>
           )}
-
-
         </div>
       </div>
     </div>
@@ -178,6 +170,7 @@ const StudentDashboard = () => {
   return (
     <div className="container-fluid">
       <div className="row vh-100">
+
         <div className="col-md-3 p-0">
           <StudentSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
@@ -185,7 +178,6 @@ const StudentDashboard = () => {
         <div className="col-md-9 p-4 overflow-auto">
           {activeTab === 'profile' && (
             <>
-              <h4>Student Profile</h4>
               <StudentProfile student={student} />
             </>
           )}

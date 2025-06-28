@@ -7,9 +7,7 @@ import DeleteClubModal from '../components/DeleteClubModal';
 import ManageEnrollments from '../components/ManageEnrollments';
 import ManageStudents from '../components/ManageStudents';
 
-// import ViewStudentModal from '../components/ViewStudentModal';
-
-
+import AdminSidebar from '../components/AddClubModal'
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('profile');
@@ -24,8 +22,6 @@ const AdminDashboard = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedClub, setSelectedClub] = useState(null);
-  const [showViewModal, setShowViewModal] = useState(false);
-  const [selectedStudentId, setSelectedStudentId] = useState(null);
 
   const token = localStorage.getItem('token');
 
@@ -33,7 +29,9 @@ const AdminDashboard = () => {
     setAdminName(localStorage.getItem('userName') || 'Admin');
     setEmail(localStorage.getItem('userEmail') || '');
     setRole(localStorage.getItem('userRole') || '');
+
     fetchClubs();
+
     if (activeTab === 'students') fetchStudents();
 
     axios
@@ -77,18 +75,18 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleDeleteStudent = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this student?')) return;
-    try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/api/students/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      toast.success('Student deleted');
-      fetchStudents();
-    } catch (err) {
-      toast.error('Failed to delete student');
-    }
-  };
+  // const handleDeleteStudent = async (id) => {
+  //   if (!window.confirm('Are you sure you want to delete this student?')) return;
+  //   try {
+  //     await axios.delete(`${import.meta.env.VITE_API_URL}/api/students/${id}`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+  //     toast.success('Student deleted');
+  //     fetchStudents();
+  //   } catch (err) {
+  //     toast.error('Failed to delete student');
+  //   }
+  // };
 
 
   return (
@@ -243,12 +241,6 @@ const AdminDashboard = () => {
         clubId={selectedClub?._id}
         refreshClubs={fetchClubs}
       />
-
-      {/* <ViewStudentModal
-        show={showViewModal}
-        handleClose={() => setShowViewModal(false)}
-        studentId={selectedStudentId}
-      /> */}
 
     </div>
   );

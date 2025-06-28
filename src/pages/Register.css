@@ -1,34 +1,42 @@
-/* Simple fade-in animation */
-.animated-fade {
-    animation: fadeIn 0.8s ease-in-out;
+.register-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.register-card {
+    background-color: #fff;
+    border: none;
+    backdrop-filter: blur(6px);
 }
 
-/* Hover effect on register button */
-.register-btn {
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-weight: bold;
+.register-logo {
+    width: 100px;
+    height: auto;
 }
 
-.register-btn:hover {
-    background-color: #ffc107;
-    transform: scale(1.02);
+.text-accent {
+    color: #002f6c !important;
 }
 
-/* Form Card */
-.register-form {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 12px;
+.btn-yellow {
+    background-color: #f1c40f;
+    color: #002f6c;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-yellow:hover {
+    background-color: #d4ac0d;
+    color: #fff;
+}
+
+.input-group-text {
+    background-color: #f1c40f;
+    color: #002f6c;
+    border: none;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(241, 196, 15, 0.3);
 }
