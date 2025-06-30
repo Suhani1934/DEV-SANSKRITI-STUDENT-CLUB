@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import './Login.css';
@@ -79,6 +79,9 @@ function Login() {
           <button className="btn btn-yellow w-100 py-2 fw-bold d-flex justify-content-center align-items-center gap-2">
             <i className="bi bi-box-arrow-in-right"></i> Login
           </button>
+          <p className="mt-3 text-center">
+            Don't Have An Account? <Link to="/register" className="text-accent">Register</Link>
+          </p>
         </form>
       </div>
     </div>
