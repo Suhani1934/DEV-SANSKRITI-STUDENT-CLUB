@@ -6,10 +6,9 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Welcome from './pages/Welcome';
-import ProtectedRouteStudent from './components/ProtectedRouteStudent';
+// import ProtectedRouteStudent from './components/ProtectedRouteStudent';
 import StudentDashboard from './pages/StudentDashboard';
 import AdminDashboard from './pages/AdminDashboard';
-// import ClubDetails from './pages/ClubDetails'
 // import ClubCard from './components/clubCard';
 
 import Footer from './components/Footer';
@@ -19,6 +18,8 @@ import { isTokenExpired } from './utils/auth';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 function App() {
 

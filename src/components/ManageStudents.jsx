@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-
 const ManageStudents = () => {
     const [students, setStudents] = useState([]);
     const token = localStorage.getItem('token');
@@ -33,7 +32,7 @@ const ManageStudents = () => {
                             <th>Phone</th>
                             <th>Course</th>
                             <th>Year</th>
-                            <th>Enrolled Clubs</th>
+                            <th>Enrolled Clubs & Categories</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,15 +46,19 @@ const ManageStudents = () => {
                                 <td>
                                     {student.enrolledClubs.length > 0 ? (
                                         <ul className="mb-0 ps-3">
-                                            {student.enrolledClubs.map(club => (
-                                                <li key={club._id}>{club.name}</li>
+                                            {student.enrolledClubs.map((enrolled, idx) => (
+                                                <li key={enrolled.club?._id || idx}>
+                                                    <strong>{enrolled.club?.name || 'Unknown Club'}</strong>
+                                                    <br />
+                                                    <small className="text-muted">Category: {enrolled.category || 'N/A'}</small>
+                                                </li>
                                             ))}
                                         </ul>
                                     ) : (
                                         <span className="text-muted">None</span>
                                     )}
-                                </td>
 
+                                </td>
                             </tr>
                         ))}
                     </tbody>

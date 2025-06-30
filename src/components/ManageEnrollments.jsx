@@ -45,6 +45,7 @@ const ManageEnrollments = () => {
                         <th>Student</th>
                         <th>Email</th>
                         <th>Club</th>
+                        <th>Category</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -55,6 +56,7 @@ const ManageEnrollments = () => {
                             <td>{req.student?.name}</td>
                             <td>{req.student?.email}</td>
                             <td>{req.club?.name}</td>
+                            <td>{req.category}</td>
                             <td>{req.status}</td>
                             <td>
                                 {req.status === 'pending' && (

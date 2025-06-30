@@ -7,7 +7,7 @@ import DeleteClubModal from '../components/DeleteClubModal';
 import ManageEnrollments from '../components/ManageEnrollments';
 import ManageStudents from '../components/ManageStudents';
 
-import AdminSidebar from '../components/AddClubModal'
+// import AdminSidebar from '../components/AddClubModal'
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('profile');
@@ -172,7 +172,7 @@ const AdminDashboard = () => {
                       <div className="card-body">
                         <h5 className="card-title">{club.name}</h5>
                         <p className="card-text">{club.description?.slice(0, 80)}...</p>
-                        <p className="text-muted"><strong>Category:</strong> {club.category || 'N/A'}</p>
+                        {/* <p className="text-muted"><strong>Category:</strong> {club.category || 'N/A'}</p> */}
 
                         <div className="d-flex justify-content-end gap-2 mt-3">
                           <button
@@ -225,7 +225,7 @@ const AdminDashboard = () => {
       <AddClubModal
         show={showAddModal}
         handleClose={() => setShowAddModal(false)}
-        refreshClubs={fetchClubs}
+        onClubAdded={fetchClubs}
       />
 
       <EditClubModal

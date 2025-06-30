@@ -1,105 +1,100 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
-const AddClubModal = ({ show, handleClose, refreshClubs }) => {
-    const [name, setName] = useState('');
-    const [desc, setDesc] = useState('');
-    const [category, setCategory] = useState('');
+const AddClubModal = ({ show, handleClose, onClubAdded }) => {
+    const [form, setForm] = useState({ name: '', description: '', categories: '' });
     const [image, setImage] = useState(null);
 
-    const token = localStorage.getItem('token');
+    const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+    const handleImageChange = (e) => setImage(e.target.files[0]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!name || !image) {
-            toast.error('Club name and image are required.');
-            return;
-        }
+        // ✅ Parse categories properly
+        const categoriesArray = form.categories
+            .split(',')
+            .map((cat) => cat.trim())
+            .filter(Boolean);
 
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('description', desc);
-        formData.append('category', category);
-        formData.append('image', image);
+        const data = new FormData();
+        data.append('name', form.name);
+        data.append('description', form.description);
+
+        // ✅ Important: stringify the array before sending
+        data.append('categories', JSON.stringify(categoriesArray));
+
+        if (image) data.append('image', image);
 
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/api/clubs`, formData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'multipart/form-data',
-                },
+            // console.log([...data.entries()]);
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/clubs`, data, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
             });
-            toast.success('Club created successfully!');
+            toast.success('Club created successfully');
+            onClubAdded();
             handleClose();
-            refreshClubs();
-            // reset form
-            setName('');
-            setDesc('');
-            setCategory('');
-            setImage(null);
         } catch (err) {
-            console.error(err);
-            toast.error(err.response?.data?.error || 'Error creating club');
+            console.error('[ADD CLUB ERROR]', err.response || err);
+            toast.error(err.response?.data?.error || 'Failed to add club');
         }
     };
 
     return (
-        <Modal show={show} onHide={handleClose} centered>
+        <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Add New Club</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
+                <Modal.Body>
                     <Form.Group className="mb-3">
                         <Form.Label>Club Name</Form.Label>
                         <Form.Control
-                            type="text"
-                            placeholder="Enter club name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            name="name"
+                            value={form.name}
+                            onChange={handleChange}
                             required
                         />
                     </Form.Group>
-
                     <Form.Group className="mb-3">
                         <Form.Label>Description</Form.Label>
                         <Form.Control
                             as="textarea"
+                            name="description"
                             rows={3}
-                            placeholder="Enter club description"
-                            value={desc}
-                            onChange={(e) => setDesc(e.target.value)}
-                        />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                        <Form.Label>Category</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="e.g. Technical, Cultural"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                        />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                        <Form.Label>Club Image</Form.Label>
-                        <Form.Control
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => setImage(e.target.files[0])}
+                            value={form.description}
+                            onChange={handleChange}
                             required
                         />
                     </Form.Group>
-
-                    <Button variant="primary" type="submit" className="w-100">
-                        Create Club
+                    <Form.Group className="mb-3">
+                        <Form.Label>
+                            Categories <small>(comma separated)</small>
+                        </Form.Label>
+                        <Form.Control
+                            name="categories"
+                            value={form.categories}
+                            onChange={handleChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Club Image</Form.Label>
+                        <Form.Control type="file" onChange={handleImageChange} />
+                    </Form.Group>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Cancel
                     </Button>
-                </Form>
-            </Modal.Body>
+                    <Button type="submit" variant="primary">
+                        Add Club
+                    </Button>
+                </Modal.Footer>
+            </Form>
         </Modal>
     );
 };
