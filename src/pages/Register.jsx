@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import courses from '../data/courses';
 import './Register.css';
 
@@ -123,7 +123,7 @@ const Register = () => {
           </button>
 
           <p className="mt-3 text-center">
-            Already have an account? <a href="/login" className="text-accent">Login here</a>
+            Already have an account? <Link to="/login" className="text-accent">Login here</Link>
           </p>
         </form>
       </div>
