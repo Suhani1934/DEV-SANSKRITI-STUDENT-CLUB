@@ -31,7 +31,6 @@ const Home = () => {
       console.error('Failed to load clubs');
     }
   };
-  fetchClubs();
 
   const handleEnroll = async (clubId) => {
     try {
