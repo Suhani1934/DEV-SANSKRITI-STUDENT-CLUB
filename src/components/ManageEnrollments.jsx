@@ -44,8 +44,7 @@ const ManageEnrollments = () => {
                     <tr>
                         <th>Student</th>
                         <th>Email</th>
-                        <th>Club</th>
-                        <th>Category</th>
+                        <th>Club & Categories</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -55,8 +54,15 @@ const ManageEnrollments = () => {
                         <tr key={req._id}>
                             <td>{req.student?.name}</td>
                             <td>{req.student?.email}</td>
-                            <td>{req.club?.name}</td>
-                            <td>{req.category}</td>
+                            <td>
+                                <ul className="mb-0 ps-3">
+                                    <li>
+                                        <strong>{req.club?.name || 'Unknown Club'}</strong>
+                                        <br />
+                                        <small className="text-muted">Category: {req.category || 'N/A'}</small>
+                                    </li>
+                                </ul>
+                            </td>
                             <td>{req.status}</td>
                             <td>
                                 {req.status === 'pending' && (

@@ -232,7 +232,7 @@ const AdminDashboard = () => {
         show={showEditModal}
         handleClose={() => setShowEditModal(false)}
         club={selectedClub}
-        refreshClubs={fetchClubs}
+        onClubUpdated ={fetchClubs}
       />
 
       <DeleteClubModal
