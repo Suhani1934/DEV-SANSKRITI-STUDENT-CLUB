@@ -31,14 +31,6 @@ const faqs = [
       question: 'How do I know if my enrollment request was rejected?',
       answer: 'You’ll see the request status as "Rejected" along with a reason on your dashboard.',
     },
-    {
-      question: 'Can I join more than one club?',
-      answer: 'Yes, you can join multiple clubs, but only one category per club.',
-    },
-    {
-      question: 'Is there a mobile app for this portal?',
-      answer: 'Currently, the portal is web-only, but we plan to launch a mobile app soon.',
-    },
   ];
   
   export default faqs;

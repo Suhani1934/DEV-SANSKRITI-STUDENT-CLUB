@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import GallerySlider from '../components/GallerySlider';
 import ClubCard from '../components/ClubCard';
+import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 
 import banner1 from '../assets/Banners/banner1.jpg'
@@ -73,9 +74,10 @@ const Home = () => {
         </div>
       </section>
 
+      <Testimonials />
       {/* Gallery Slider */}
       <GallerySlider images={galleryImages} />
-      <FAQ/>
+      <FAQ />
     </div>
   );
 };
