@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import StudentSidebar from '../components/StudentSidebar';
 import StudentProfile from '../components/StudentProfile';
 import { toast } from 'react-toastify';
 import CategorySelectModal from '../components/CategorySelectModal';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const StudentDashboard = () => {
   const [activeTab, setActiveTab] = useState('profile');
@@ -21,6 +21,8 @@ const StudentDashboard = () => {
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [selectedClubId, setSelectedClubId] = useState(null);
   const [selectedClubCategories, setSelectedClubCategories] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchClubs();
@@ -188,7 +190,10 @@ const StudentDashboard = () => {
               </p>
             )} */}
 
-            <button className="btn btn-primary btn-sm mt-auto" onClick={() => handleViewDetails(club._id)}>
+            <button
+              className="btn btn-primary btn-sm mt-auto"
+              onClick={() => navigate(`/clubs/${club._id}`)}
+            >
               View Details
             </button>
           </div>

@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import GallerySlider from '../components/GallerySlider';
 import ClubCard from '../components/ClubCard';
+import FAQ from '../components/FAQ';
 
 import banner1 from '../assets/Banners/banner1.jpg'
 import banner2 from '../assets/Banners/banner2.jpg'
@@ -74,6 +75,7 @@ const Home = () => {
 
       {/* Gallery Slider */}
       <GallerySlider images={galleryImages} />
+      <FAQ/>
     </div>
   );
 };

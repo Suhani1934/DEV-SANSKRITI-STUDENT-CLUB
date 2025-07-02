@@ -203,7 +203,6 @@ const AdminDashboard = () => {
             </>
           )}
 
-
           {activeTab === 'enrollments' && (
             <>
               <h4>Enrollment Requests</h4>

@@ -9,7 +9,8 @@ import Welcome from './pages/Welcome';
 // import ProtectedRouteStudent from './components/ProtectedRouteStudent';
 import StudentDashboard from './pages/StudentDashboard';
 import AdminDashboard from './pages/AdminDashboard';
-// import ClubCard from './components/clubCard';
+
+import ClubDetailPage from './pages/ClubDetailPage'
 
 import Footer from './components/Footer';
 
@@ -48,14 +49,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          <Route
-            path="/welcome"
-            element={
-              <Welcome />
-            }
-          />
-
-          {/* <Route path="/clubs" element={<ClubCard />} /> */}
+          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/clubs/:clubId" element={<ClubDetailPage />} />
 
           {/* Student-only route */}
           <Route
@@ -66,9 +61,6 @@ function App() {
               </RoleBasedRoute>
             }
           />
-          {/* <Route path="/club-details" element={<RoleBasedRoute allowedRole="student">
-          <ClubDetails />
-        </RoleBasedRoute>} /> */}
 
           {/* Admin-only route */}
           <Route

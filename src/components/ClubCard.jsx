@@ -4,10 +4,6 @@ import './ClubCard.css';
 const ClubCard = ({ club }) => {
   const navigate = useNavigate();
 
-  const handleViewDetails = () => {
-    navigate(`/clubs/${club._id}`);
-  };
-
   return (
     <div className="card club-card shadow-lg border-0 h-100">
       <div className="club-card-img-wrapper">
@@ -24,7 +20,7 @@ const ClubCard = ({ club }) => {
         </p>
         <button
           className="btn btn-yellow w-100 d-flex align-items-center justify-content-center gap-2 mt-auto"
-          onClick={handleViewDetails}
+          onClick={() => navigate(`/clubs/${club._id}`)}
         >
           <i className="bi bi-eye-fill"></i> View Details
         </button>
