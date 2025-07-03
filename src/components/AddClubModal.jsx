@@ -14,7 +14,6 @@ const AddClubModal = ({ show, handleClose, onClubAdded }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // ✅ Parse categories properly
         const categoriesArray = form.categories
             .split(',')
             .map((cat) => cat.trim())
@@ -24,7 +23,6 @@ const AddClubModal = ({ show, handleClose, onClubAdded }) => {
         data.append('name', form.name);
         data.append('description', form.description);
 
-        // ✅ Important: stringify the array before sending
         data.append('categories', JSON.stringify(categoriesArray));
 
         if (image) data.append('image', image);

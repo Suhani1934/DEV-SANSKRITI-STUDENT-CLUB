@@ -1,0 +1,9 @@
+.feedback-form-container {
+  background-color: #f8f9fa;
+  border-left: 6px solid #004aad;
+  transition: box-shadow 0.4s;
+}
+
+.feedback-form-container:hover {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}

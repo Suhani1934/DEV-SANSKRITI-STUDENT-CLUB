@@ -1,7 +1,6 @@
 import React from 'react';
 import faqs from '../data/faqs';
-import './FAQ.css'; // Import the separate CSS
-
+import './FAQ.css';
 const FAQ = () => (
   <div className="faq-container container my-5">
     <h2 className="faq-title text-center mb-4">Frequently Asked Questions</h2>

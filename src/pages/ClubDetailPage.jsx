@@ -1,123 +1,134 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import GallerySlider from '../components/GallerySlider';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { Spinner } from "react-bootstrap";
+import GallerySlider from "../components/GallerySlider";
+import FeedbackForm from "../components/FeedbackForm";
 
-import banner1 from '../assets/Banners/banner1.jpg';
-import banner2 from '../assets/Banners/banner2.jpg';
-import banner3 from '../assets/Banners/banner3.jpeg';
-import banner4 from '../assets/Banners/banner4.jpg';
-import banner5 from '../assets/Banners/banner5.jpg';
+import "./ClubDetailPage.css";
+
+import banner1 from "../assets/Banners/banner1.jpg";
+import banner2 from "../assets/Banners/banner2.jpg";
+import banner3 from "../assets/Banners/banner3.jpeg";
+import banner4 from "../assets/Banners/banner4.jpg";
+import banner5 from "../assets/Banners/banner5.jpg";
 
 const ClubDetailPage = () => {
   const { clubId } = useParams();
-  const [club, setClub] = useState(null);
-  const token = localStorage.getItem('token');
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const galleryImages = [
-    banner1, banner2, banner3, banner4, banner5,
-    banner1, banner2, banner3, banner4, banner5,
-  ];
+   const galleryImages = [
+      banner1,
+      banner2,
+      banner3,
+      banner4,
+      banner5,
+      banner1,
+      banner2,
+      banner3,
+      banner4,
+      banner5,
+      banner1,
+      banner2,
+      banner3,
+      banner4,
+      banner5,
+    ];
 
-  useEffect(() => {
-    fetchClubDetails();
-  }, []);
-
-  // const fetchClubDetails = async () => {
-  //   try {
-  //     const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/clubs/${clubId}`, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     });
-  //     setClub(res.data);
-  //   } catch (err) {
-  //     console.error('[FETCH CLUB DETAIL ERROR]', err);
-  //     toast.error('Failed to load club details');
-  //   }
-  // };
-
-  const fetchClubDetails = async () => {
+  const fetchClubDetail = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/club-details/${clubId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setClub(res.data);
-    } catch {
-      toast.error('Failed to load club details');
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/club-details/${clubId}`
+      );
+      setData(res.data);
+      setLoading(false);
+    } catch (err) {
+      console.error("[FETCH CLUB DETAIL ERROR]", err);
+      setLoading(false);
     }
   };
 
+  useEffect(() => {
+    fetchClubDetail();
+  }, [clubId]);
 
-  if (!club) return <div className="text-center my-5">Loading club details...</div>;
+  if (loading)
+    return (
+      <div className="d-flex justify-content-center py-5">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    );
+
+  if (!data)
+    return (
+      <div className="container py-5">
+        <h2>Club not found</h2>
+      </div>
+    );
+
+  const { basic, admin, members } = data;
 
   return (
-    <div className="container mt-4">
-      <div className="text-center mb-4">
-        <h2 className="fw-bold text-primary display-5 mb-2 animate__animated animate__fadeInDown">{club.name}</h2>
-        <p className="lead text-muted animate__animated animate__fadeIn">{club.description || 'No description available.'}</p>
+    <div className="club-detail container py-5">
+      <div className="text-center mb-5">
+        <h1 className="club-title">{basic.name}</h1>
+        <p className="club-subtitle">Explore everything about this club</p>
       </div>
 
-      {/* Categories */}
-      <div className="mb-5">
-        <h4 className="text-secondary fw-bold mb-3">Categories</h4>
-        <div className="d-flex flex-wrap gap-2">
-          {club.categories?.length > 0 ? (
-            club.categories.map((cat, i) => (
-              <span
-                key={i}
-                className="badge bg-gradient p-2 fs-6 shadow-sm animate__animated animate__zoomIn"
-                style={{ background: 'linear-gradient(45deg, #ffd700, #f9a825)', cursor: 'pointer' }}
-              >
-                {cat}
+      <div className="row align-items-center mb-5">
+        <div className="col-md-6 mb-4 mb-md-0">
+          <div className="club-logo-container">
+            <img
+              src={admin.logo || "/default.jpg"}
+              alt={basic.name}
+              className="img-fluid rounded shadow club-logo"
+            />
+          </div>
+        </div>
+        <div className="col-md-6 club-about">
+          <h4>About the Club</h4>
+          <p>{admin.description || "No description available."}</p>
+
+          <h5>Categories</h5>
+          <div className="club-categories mb-3">
+            {basic.categories?.map((c, i) => (
+              <span key={i} className="badge category-badge me-2 mb-2">
+                {c}
               </span>
-            ))
-          ) : (
-            <span className="text-muted">No categories available.</span>
-          )}
+            ))}
+          </div>
+
+          <h5>Coordinator</h5>
+          <p className="mb-0 fw-bold">{admin.coordinator?.name || "N/A"}</p>
+          <p className="text-muted">{admin.coordinator?.email || ""}</p>
         </div>
       </div>
 
-      {/* Coordinator */}
-      <div className="mb-5">
-        <h4 className="text-secondary fw-bold mb-3">Coordinator</h4>
-        {club.coordinator ? (
-          <div className="card border-0 shadow-sm p-3 animate__animated animate__fadeInUp">
-            <div className="card-body">
-              <h5 className="card-title text-dark fw-bold">{club.coordinator.name}</h5>
-              <p className="card-text text-muted mb-0">{club.coordinator.email}</p>
-            </div>
-          </div>
-        ) : (
-          <p className="text-muted">No coordinator assigned yet.</p>
-        )}
-      </div>
-
-      {/* Members */}
-      <div className="mb-5">
-        <h4 className="text-secondary fw-bold mb-3">Members</h4>
-        {club.members?.length > 0 ? (
+      <div className="mb-5 club-members">
+        <h4 className="mb-4">Members</h4>
+        {members.length > 0 ? (
           <div className="row g-3">
-            {club.members.map((m) => (
-              <div key={m.student._id} className="col-md-4">
-                <div className="card h-100 border-0 shadow-sm animate__animated animate__zoomIn">
-                  <div className="card-body">
-                    <h6 className="fw-bold text-primary">{m.student.name}</h6>
-                    <p className="text-muted mb-0">Category: <strong>{m.category}</strong></p>
-                  </div>
+            {members.map((m) => (
+              <div key={m._id} className="col-12 col-md-6 col-lg-4">
+                <div className="member-card p-3 rounded shadow h-100">
+                  <h6 className="fw-bold mb-1">{m.student?.name}</h6>
+                  <p className="text-muted mb-2">{m.student?.email}</p>
+                  <span className="badge category-badge">{m.category}</span>
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-muted">No members enrolled yet.</p>
+          <p className="text-muted">No members yet.</p>
         )}
       </div>
 
-      {/* Gallery */}
-      <div className="mb-5">
-        <h4 className="text-secondary fw-bold mb-3">Gallery</h4>
-        <GallerySlider images={galleryImages} />
-      </div>
+      {/* Gallery Slider */}
+      <GallerySlider images={galleryImages} />
+
+      <FeedbackForm />
+
     </div>
   );
 };
