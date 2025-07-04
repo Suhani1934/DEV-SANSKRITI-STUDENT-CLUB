@@ -11,11 +11,11 @@ import ClubCard from "../components/ClubCard";
 import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
 
-import banner1 from "../assets/Banners/banner1.jpg";
-import banner2 from "../assets/Banners/banner2.jpg";
-import banner3 from "../assets/Banners/banner3.jpeg";
-import banner4 from "../assets/Banners/banner4.jpg";
-import banner5 from "../assets/Banners/banner5.jpg";
+import banner1 from "../assets/Banners/banner1.PNG";
+import banner2 from "../assets/Banners/banner2.PNG";
+import banner3 from "../assets/Banners/banner3.PNG";
+import banner4 from "../assets/Banners/banner4.PNG";
+import banner5 from "../assets/Banners/banner5.PNG";
 
 const Home = () => {
   const [clubs, setClubs] = useState([]);

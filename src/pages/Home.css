@@ -1,7 +1,7 @@
 /* Hero Section */
 .hero {
     height: 89vh;
-    background: url('../assets/Banners/banner1.jpg') no-repeat center center/cover;
+    background: url('../assets/Banners/banner1.PNG') no-repeat center center/cover;
     overflow: hidden;
     position: relative;
     background-size: cover;
@@ -19,27 +19,27 @@
 
 @keyframes slideshow {
     0% {
-        background-image: url("../assets/Banners/banner1.jpg");
+        background-image: url("../assets/Banners/banner5.PNG");
     }
 
     20% {
-        background-image: url("../assets/Banners/banner2.jpg");
+        background-image: url("../assets/Banners/banner1.PNG");
     }
 
     40% {
-        background-image: url("../assets/Banners/banner3.jpeg");
+        background-image: url("../assets/Banners/banner2.PNG");
     }
 
     60% {
-        background-image: url("../assets/Banners/banner4.jpg");
+        background-image: url("../assets/Banners/banner3.PNG");
     }
 
     80% {
-        background-image: url("../assets/Banners/banner5.jpg");
+        background-image: url("../assets/Banners/banner4.PNG");
     }
 
     100% {
-        background-image: url("../assets/Banners/banner1.jpg");
+        background-image: url("../assets/Banners/banner5.PNG");
     }
 }
 

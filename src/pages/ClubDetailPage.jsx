@@ -7,34 +7,46 @@ import FeedbackForm from "../components/FeedbackForm";
 
 import "./ClubDetailPage.css";
 
-import banner1 from "../assets/Banners/banner1.jpg";
-import banner2 from "../assets/Banners/banner2.jpg";
-import banner3 from "../assets/Banners/banner3.jpeg";
-import banner4 from "../assets/Banners/banner4.jpg";
-import banner5 from "../assets/Banners/banner5.jpg";
+import banner from "../assets/Banners/banner.PNG";
+import banner1 from "../assets/Banners/banner1.PNG";
+import banner2 from "../assets/Banners/banner2.PNG";
+import banner3 from "../assets/Banners/banner3.PNG";
+import banner4 from "../assets/Banners/banner4.PNG";
+import banner5 from "../assets/Banners/banner5.PNG";
+import banner6 from "../assets/Banners/banner6.PNG";
+import banner7 from "../assets/Banners/banner7.PNG";
+import banner8 from "../assets/Banners/banner8.PNG";
+import banner9 from "../assets/Banners/banner9.PNG";
+import banner10 from "../assets/Banners/banner10.PNG";
+import banner11 from "../assets/Banners/banner11.PNG";
+import banner12 from "../assets/Banners/banner12.PNG";
+import banner13 from "../assets/Banners/banner13.PNG";
+import banner14 from "../assets/Banners/banner14.PNG";
+import banner15 from "../assets/Banners/banner15.PNG";
 
 const ClubDetailPage = () => {
   const { clubId } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-   const galleryImages = [
-      banner1,
-      banner2,
-      banner3,
-      banner4,
-      banner5,
-      banner1,
-      banner2,
-      banner3,
-      banner4,
-      banner5,
-      banner1,
-      banner2,
-      banner3,
-      banner4,
-      banner5,
-    ];
+  const galleryImages = [
+    banner,
+    banner1,
+    banner2,
+    banner3,
+    banner4,
+    banner5,
+    banner6,
+    banner7,
+    banner8,
+    banner9,
+    banner10,
+    banner11,
+    banner12,
+    banner13,
+    banner14,
+    banner15,
+  ];
 
   const fetchClubDetail = async () => {
     try {
@@ -128,7 +140,6 @@ const ClubDetailPage = () => {
       <GallerySlider images={galleryImages} />
 
       <FeedbackForm />
-
     </div>
   );
 };
