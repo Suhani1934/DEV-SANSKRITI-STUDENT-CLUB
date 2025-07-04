@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import './App.css'
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Register from './pages/Register';
