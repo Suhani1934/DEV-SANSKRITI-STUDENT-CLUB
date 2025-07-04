@@ -46,7 +46,7 @@ const ManageEnrollments = () => {
   return (
     <div className="container">
       <table className="table table-bordered">
-        <thead>
+        <thead className="table-primary">
           <tr>
             <th>Student</th>
             <th>Email</th>

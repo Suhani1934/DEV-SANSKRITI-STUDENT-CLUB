@@ -28,7 +28,7 @@ const ManageStudents = () => {
     <div>
       <div className="table-responsive">
         <table className="table table-bordered mt-3">
-          <thead>
+          <thead className="table-primary">
             <tr>
               <th>Name</th>
               <th>Email</th>

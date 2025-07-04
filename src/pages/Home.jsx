@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./Home.css";
+import UpcomingEvents from "../components/UpcomingEvents";
 import GallerySlider from "../components/GallerySlider";
 import ClubCard from "../components/ClubCard";
 import Testimonials from "../components/Testimonials";
@@ -86,6 +87,7 @@ const Home = () => {
         </div>
       </section>
 
+      <UpcomingEvents />
       {/* Clubs Cards */}
       <section className="container py-5">
         <h2 className="mb-4 text-center text-primary">Our Clubs</h2>

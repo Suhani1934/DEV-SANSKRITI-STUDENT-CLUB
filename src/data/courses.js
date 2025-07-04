@@ -42,6 +42,14 @@ const courses = [
   "B.A. Hindi (Honors)",
   "M.A. Hindi",
   "Ph.D. Hindi",
+  "B.A. Music (Vocal) (Honors)",
+  "M.A. Music (Vocal)",
+  "B.A. Music Instrumental Mridang/Tabla (Honors)",
+  "M.A. Music (Tabla, Pakhaawaj)",
+  "Ph. D. Indian Classical Music",
+  "B.A. History (Honors)",
+  "M. A. History and Indian Culture",
+  "Ph. D. History",
 ];
 
 export default courses.sort((a, b) => a.localeCompare(b));

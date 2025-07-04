@@ -12,6 +12,7 @@ const ManageClubDetails = () => {
     images: "",
     coordinator: "",
   });
+  const [enrolledMembers, setEnrolledMembers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -35,16 +36,18 @@ const ManageClubDetails = () => {
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/api/club-details/${clubId}`
       );
-      const { admin } = res.data;
+      const { admin, members } = res.data;
       setClubDetail({
         description: admin?.description || "",
         logo: admin?.logo || "",
         images: admin?.images?.join(", ") || "",
         coordinator: admin?.coordinator?._id || "",
       });
+      setEnrolledMembers(members || []);
     } catch {
-      // no existing club detail → keep fields empty
+      console.error("[FETCH CLUB DETAIL ERROR]", err);
       setClubDetail({ description: "", logo: "", images: "", coordinator: "" });
+      setEnrolledMembers([]);
     } finally {
       setLoading(false);
     }
@@ -83,8 +86,8 @@ const ManageClubDetails = () => {
   return (
     <div className="container mt-4">
       <div className="table-responsive">
-        <table className="table table-bordered">
-          <thead>
+        <table className="table table-bordered align-middle">
+          <thead className="table-primary">
             <tr>
               <th>Club Name</th>
               <th>Categories</th>
@@ -119,7 +122,7 @@ const ManageClubDetails = () => {
         <Modal.Body>
           {loading ? (
             <div className="d-flex justify-content-center py-4">
-              <Spinner />
+              <Spinner animation="border" variant="primary" />
             </div>
           ) : (
             <Form>
@@ -164,9 +167,10 @@ const ManageClubDetails = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Coordinator (User ID)</Form.Label>
-                <Form.Control
-                  type="text"
+                <Form.Label>
+                  Select Coordinator
+                </Form.Label>
+                <Form.Select
                   value={clubDetail.coordinator}
                   onChange={(e) =>
                     setClubDetail({
@@ -174,12 +178,26 @@ const ManageClubDetails = () => {
                       coordinator: e.target.value,
                     })
                   }
-                  placeholder="Enter coordinator user ID"
-                />
+                >
+                  <option value="">-- Select Coordinator --</option>
+                  {enrolledMembers.length > 0 ? (
+                    enrolledMembers.map((member) => (
+                      <option
+                        key={member.student._id}
+                        value={member.student._id}
+                      >
+                        {member.student.name}
+                      </option>
+                    ))
+                  ) : (
+                    <option disabled>No enrolled members available</option>
+                  )}
+                </Form.Select>
               </Form.Group>
             </Form>
           )}
         </Modal.Body>
+
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Close

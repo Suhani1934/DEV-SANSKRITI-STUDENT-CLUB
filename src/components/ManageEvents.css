@@ -1,0 +1,8 @@
+.manage-events table tr:hover {
+  background-color: rgba(0, 123, 255, 0.05);
+}
+
+.manage-events .table-primary th {
+  background-color: var(--bs-primary);
+  color: white;
+}
