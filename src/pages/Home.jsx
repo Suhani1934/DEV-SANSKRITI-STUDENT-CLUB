@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./Home.css";
+import ThoughtOfTheDay from "../components/ThoughtOfTheDay";
 import UpcomingEvents from "../components/UpcomingEvents";
 import GallerySlider from "../components/GallerySlider";
 import ClubCard from "../components/ClubCard";
@@ -69,6 +70,7 @@ const Home = () => {
 
   return (
     <div className="home-page">
+      <ThoughtOfTheDay thought="🌟 Thought of the Day: Success is not final; failure is not fatal: It is the courage to continue that counts." />
       {/* Hero Banner */}
       <section className="hero text-white text-center d-flex align-items-center justify-content-center">
         <div className="container">
