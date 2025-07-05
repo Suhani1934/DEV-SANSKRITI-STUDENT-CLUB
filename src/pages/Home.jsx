@@ -72,7 +72,7 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <ThoughtOfTheDay thought="🌟 Thought of the Day: Success is not final; failure is not fatal: It is the courage to continue that counts." />
+      <ThoughtOfTheDay/>
       {/* Hero Banner */}
       <section className="hero text-white text-center d-flex align-items-center justify-content-center col-8">
         <div className="container">
