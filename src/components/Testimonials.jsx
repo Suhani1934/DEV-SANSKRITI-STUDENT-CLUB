@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Spinner, Button } from "react-bootstrap";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "./Testimonials.css";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const fetchTestimonials = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/testimonials/approved`);
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/testimonials/approved`
+      );
       setTestimonials(res.data);
     } catch (err) {
       console.error("[FETCH TESTIMONIALS ERROR]", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -20,10 +30,18 @@ const Testimonials = () => {
     fetchTestimonials();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center py-5">
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
-    <div className="container py-5">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 className="text-primary">What Students Say</h2>
+    <div className="container testimonial-section py-5">
+      <div className="d-flex justify-content-between align-items-center mb-4 px-2 px-md-4">
+        <h2 className="text-primary fw-bold">What Students Say</h2>
         <Button
           variant="warning"
           className="text-white fw-bold"
@@ -32,26 +50,42 @@ const Testimonials = () => {
           Share Your Experience
         </Button>
       </div>
-      <div className="row g-4">
-        {testimonials.map((t) => (
-          <div key={t._id} className="col-md-4">
-            <div className="card shadow-sm h-100">
-              {t.photo && (
-                <img
-                  src={t.photo}
-                  alt={t.name}
-                  className="card-img-top object-fit-cover"
-                  height={200}
-                />
-              )}
-              <div className="card-body">
-                <h5 className="card-title text-primary">{t.name}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">{t.course}</h6>
-                <p className="card-text">{t.text}</p>
+
+      <div className="testimonial-slider-wrapper mx-auto">
+        <Swiper
+          slidesPerView={3}
+          slidesPerGroup={1}    
+          spaceBetween={30}
+          loop
+          autoplay={{ delay:4000, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          modules={[Autoplay, Pagination]}
+          breakpoints={{
+            0: { slidesPerView: 1, slidesPerGroup: 1 },
+            768: { slidesPerView: 2, slidesPerGroup: 2 },
+            992: { slidesPerView: 3, slidesPerGroup: 3 },
+          }}
+        >
+          {testimonials.map((t) => (
+            <SwiperSlide key={t._id}>
+              <div className="card shadow testimonial-card">
+                {t.photo && (
+                  <img
+                    src={t.photo}
+                    alt={t.name}
+                    className="card-img-top object-fit-cover testimonial-photo"
+                    height={200}
+                  />
+                )}
+                <div className="card-body">
+                  <h5 className="card-title text-primary fw-bold">{t.name}</h5>
+                  <h6 className="card-subtitle mb-2 text-muted">{t.course}</h6>
+                  <p className="card-text">{t.text}</p>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );

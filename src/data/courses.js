@@ -28,6 +28,7 @@ const courses = [
   "M.A. Philosophy",
   "B.Sc. Yogic Science (Honors)",
   "M.Sc. Yoga Therapy",
+  "MCA",
   "M.A. Human Consciousness & Yogic Science",
   "M.Sc. Human Consciousness & Yogic Science",
   "Ph. D. Human Consciousness & Yogic Science",
