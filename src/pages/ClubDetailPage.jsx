@@ -7,11 +7,6 @@ import FeedbackForm from "../components/FeedbackForm";
 
 import "./ClubDetailPage.css";
 
-import banner from "../assets/Banners/banner.PNG";
-import banner1 from "../assets/Banners/banner1.PNG";
-import banner2 from "../assets/Banners/banner2.PNG";
-import banner3 from "../assets/Banners/banner3.PNG";
-import banner4 from "../assets/Banners/banner4.PNG";
 import banner5 from "../assets/Banners/banner5.PNG";
 import banner6 from "../assets/Banners/banner6.PNG";
 import banner7 from "../assets/Banners/banner7.PNG";
@@ -30,11 +25,6 @@ const ClubDetailPage = () => {
   const [loading, setLoading] = useState(true);
 
   const galleryImages = [
-    banner,
-    banner1,
-    banner2,
-    banner3,
-    banner4,
     banner5,
     banner6,
     banner7,

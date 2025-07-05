@@ -1,57 +1,59 @@
-import React, { useState } from 'react';
-import testimonials from '../data/testimonials';
-import './Testimonials.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Testimonials = () => {
-  const testimonialsPerPage = 3;
-  const [currentPage, setCurrentPage] = useState(1);
+  const [testimonials, setTestimonials] = useState([]);
+  const navigate = useNavigate();
 
-  const totalPages = Math.ceil(testimonials.length / testimonialsPerPage);
+  const fetchTestimonials = async () => {
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/testimonials/approved`);
+      setTestimonials(res.data);
+    } catch (err) {
+      console.error("[FETCH TESTIMONIALS ERROR]", err);
+    }
+  };
 
-  const handlePrev = () => setCurrentPage((p) => Math.max(p - 1, 1));
-  const handleNext = () => setCurrentPage((p) => Math.min(p + 1, totalPages));
-
-  const startIdx = (currentPage - 1) * testimonialsPerPage;
-  const currentTestimonials = testimonials.slice(startIdx, startIdx + testimonialsPerPage);
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
 
   return (
-    <section className="container my-5">
-      <h2 className="text-center mb-4 testimonials-title">What Our Students Say</h2>
-
-      <div className="row justify-content-center">
-        {currentTestimonials.map((t, idx) => (
-          <div className="col-md-6 col-lg-4 mb-4" key={idx}>
-            <div className="testimonial-card p-4 h-100 shadow">
-              <p className="testimonial-text mb-4">“{t.text}”</p>
-              <div className="testimonial-author">
-                <h5 className="mb-1">{t.name}</h5>
-                <small>{t.role}</small>
+    <div className="container py-5">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="text-primary">What Students Say</h2>
+        <Button
+          variant="warning"
+          className="text-white fw-bold"
+          onClick={() => navigate("/submit-testimonial")}
+        >
+          Share Your Experience
+        </Button>
+      </div>
+      <div className="row g-4">
+        {testimonials.map((t) => (
+          <div key={t._id} className="col-md-4">
+            <div className="card shadow-sm h-100">
+              {t.photo && (
+                <img
+                  src={t.photo}
+                  alt={t.name}
+                  className="card-img-top object-fit-cover"
+                  height={200}
+                />
+              )}
+              <div className="card-body">
+                <h5 className="card-title text-primary">{t.name}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">{t.course}</h6>
+                <p className="card-text">{t.text}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
-
-      <div className="d-flex justify-content-center gap-2">
-        <button
-          className="btn btn-outline-primary btn-sm"
-          onClick={handlePrev}
-          disabled={currentPage === 1}
-        >
-          &laquo; Previous
-        </button>
-        <span className="align-self-center fw-bold">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          className="btn btn-outline-primary btn-sm"
-          onClick={handleNext}
-          disabled={currentPage === totalPages}
-        >
-          Next &raquo;
-        </button>
-      </div>
-    </section>
+    </div>
   );
 };
 

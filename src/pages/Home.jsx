@@ -12,31 +12,33 @@ import ClubCard from "../components/ClubCard";
 import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
 
-import banner1 from "../assets/Banners/banner1.PNG";
-import banner2 from "../assets/Banners/banner2.PNG";
-import banner3 from "../assets/Banners/banner3.PNG";
-import banner4 from "../assets/Banners/banner4.PNG";
 import banner5 from "../assets/Banners/banner5.PNG";
+import banner6 from "../assets/Banners/banner6.PNG";
+import banner7 from "../assets/Banners/banner7.PNG";
+import banner8 from "../assets/Banners/banner8.PNG";
+import banner9 from "../assets/Banners/banner9.PNG";
+import banner10 from "../assets/Banners/banner10.PNG";
+import banner11 from "../assets/Banners/banner11.PNG";
+import banner12 from "../assets/Banners/banner12.PNG";
+import banner13 from "../assets/Banners/banner13.PNG";
+import banner14 from "../assets/Banners/banner14.PNG";
+import banner15 from "../assets/Banners/banner15.PNG";
 
 const Home = () => {
   const [clubs, setClubs] = useState([]);
 
   const galleryImages = [
-    banner1,
-    banner2,
-    banner3,
-    banner4,
     banner5,
-    banner1,
-    banner2,
-    banner3,
-    banner4,
-    banner5,
-    banner1,
-    banner2,
-    banner3,
-    banner4,
-    banner5,
+    banner6,
+    banner7,
+    banner8,
+    banner9,
+    banner10,
+    banner11,
+    banner12,
+    banner13,
+    banner14,
+    banner15,
   ];
 
   useEffect(() => {
@@ -72,7 +74,7 @@ const Home = () => {
     <div className="home-page">
       <ThoughtOfTheDay thought="🌟 Thought of the Day: Success is not final; failure is not fatal: It is the courage to continue that counts." />
       {/* Hero Banner */}
-      <section className="hero text-white text-center d-flex align-items-center justify-content-center">
+      <section className="hero text-white text-center d-flex align-items-center justify-content-center col-8">
         <div className="container">
           <h1 className="display-4 animate__animated animate__fadeInDown">
             Dev Sanskriti Student's Clubs
@@ -109,6 +111,7 @@ const Home = () => {
       </section>
 
       <Testimonials />
+      
       {/* Gallery Slider */}
       <GallerySlider images={galleryImages} />
       <FAQ />

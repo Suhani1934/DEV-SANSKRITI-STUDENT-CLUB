@@ -9,6 +9,7 @@ import ManageStudents from "../components/ManageStudents";
 import ManageEvents from "../components/ManageEvents";
 import ManageClubDetails from "../components/ManageClubDetails";
 import AdminFeedbacks from "../components/AdminFeedback";
+import ManageTestimonials from "../components/ManageTestimonials"
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -168,6 +169,16 @@ const AdminDashboard = () => {
             >
               All Feedback
             </button>
+            <button
+              className={`btn ${
+                activeTab === "testimonials"
+                  ? "btn-warning"
+                  : "btn-outline-warning"
+              }`}
+              onClick={() => setActiveTab("testimonials")}
+            >
+              Manage Testimonials
+            </button>
           </div>
         </div>
 
@@ -289,6 +300,12 @@ const AdminDashboard = () => {
             <>
               <h3 className="mb-4 text-primary">View All Feedback</h3>
               <AdminFeedbacks />
+            </>
+          )}
+          {activeTab === "testimonials" && (
+            <>
+              <h3 className="mb-4 text-primary">View All Testimonials</h3>
+              <ManageTestimonials />
             </>
           )}
         </div>
