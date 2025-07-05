@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Accordion, Spinner } from "react-bootstrap";
 import "./UpcomingEvents.css";
 
 const UpcomingEvents = () => {
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchEvents = async () => {
     try {
@@ -11,6 +13,8 @@ const UpcomingEvents = () => {
       setEvents(res.data);
     } catch (err) {
       console.error("[FETCH EVENTS ERROR]", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -19,24 +23,35 @@ const UpcomingEvents = () => {
   }, []);
 
   return (
-    <section className="upcoming-events py-5">
+    <section className="upcoming-events bg-light">
       <div className="container">
-        <h2 className="text-center mb-4 text-primary fw-bold">Upcoming Events</h2>
-        {events.length === 0 ? (
-          <p className="text-center">No upcoming events.</p>
-        ) : (
-          <div className="row g-4">
-            {events.map((event) => (
-              <div className="col-md-4" key={event._id}>
-                <div className="event-card p-4 shadow-sm rounded h-100 bg-white">
-                  <h4 className="text-dark fw-bold">{event.name}</h4>
-                  <p className="text-muted">
-                    Date: {new Date(event.date).toLocaleDateString()}
-                  </p>
-                </div>
-              </div>
-            ))}
+        {loading ? (
+          <div className="d-flex justify-content-center py-4">
+            <Spinner />
           </div>
+        ) : events.length === 0 ? (
+          <p className="text-center text-muted">No upcoming events.</p>
+        ) : (
+          <Accordion>
+            {events.map((event, idx) => (
+              <Accordion.Item eventKey={idx.toString()} key={event._id}>
+                <Accordion.Header className="event-header fw-bold text-dark">
+                  {event.name}{" "}
+                </Accordion.Header>
+                <Accordion.Body>
+                  <p className="mb-2 text-secondary">
+                    <strong>Date:</strong>{" "}
+                    {new Date(event.date).toLocaleString("en-IN", {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
+                </Accordion.Body>
+              </Accordion.Item>
+            ))}
+          </Accordion>
         )}
       </div>
     </section>

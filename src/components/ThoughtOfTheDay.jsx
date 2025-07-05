@@ -7,9 +7,12 @@ const ThoughtOfTheDay = () => {
 
   useEffect(() => {
     const today = new Date();
-    const daysSinceEpoch = Math.floor(today.getTime() / (1000 * 60 * 60 * 24));
-    const index = daysSinceEpoch % thoughts.length;
-    setThought(thoughts[index]);
+    const dayOfYear =
+      Math.floor(
+        (today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
+      ) % thoughts.length;
+
+    setThought(thoughts[dayOfYear]);
   }, []);
   
   return (

@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./Home.css";
 import ThoughtOfTheDay from "../components/ThoughtOfTheDay";
+import HeroSection from "../components/HeroSection";
 import UpcomingEvents from "../components/UpcomingEvents";
 import GallerySlider from "../components/GallerySlider";
 import ClubCard from "../components/ClubCard";
@@ -72,9 +73,11 @@ const Home = () => {
 
   return (
     <div className="home-page">
+
       <ThoughtOfTheDay/>
+      <HeroSection upcomingEvent={UpcomingEvents} />
       {/* Hero Banner */}
-      <section className="hero text-white text-center d-flex align-items-center justify-content-center col-8">
+      {/* <section className="hero text-white text-center d-flex align-items-center justify-content-center">
         <div className="container">
           <h1 className="display-4 animate__animated animate__fadeInDown">
             Dev Sanskriti Student's Clubs
@@ -89,9 +92,10 @@ const Home = () => {
             <i className="bi bi-pencil-square me-1"></i>Get Started
           </Link>
         </div>
-      </section>
+      </section> */}
 
-      <UpcomingEvents />
+      {/* <UpcomingEvents /> */}
+
       {/* Clubs Cards */}
       <section className="container py-5">
         <h2 className="mb-4 text-center text-primary">Our Clubs</h2>

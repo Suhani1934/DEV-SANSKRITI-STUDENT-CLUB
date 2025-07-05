@@ -7,13 +7,13 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useEffect } from "react";
+
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
 import SubmitTestimonialForm from "./components/SubmitTestimonialForm";
-// import ProtectedRouteStudent from './components/ProtectedRouteStudent';
 import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 

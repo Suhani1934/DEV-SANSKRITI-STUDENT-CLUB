@@ -1,9 +1,29 @@
-.upcoming-events .event-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-left: 5px solid var(--bs-primary);
+
+
+.upcoming-events h2 {
+  color: #f5c400;
 }
 
-.upcoming-events .event-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+.accordion-button {
+  background-color: #fff;
+  color: #00296b;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.accordion-button:hover,
+.accordion-button:not(.collapsed) {
+  background-color: #00296b;
+  color: #fff;
+}
+
+.accordion-body {
+  background-color: #f8f9fa;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.event-header {
+  font-size: 1.1rem;
 }
