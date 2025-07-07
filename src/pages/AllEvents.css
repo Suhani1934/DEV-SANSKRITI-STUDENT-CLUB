@@ -1,0 +1,13 @@
+.all-events-page .btn-group-vertical .btn {
+  border-radius: 0.5rem;
+  text-align: left;
+}
+
+.all-events-page table tbody tr:hover {
+  background-color: #f1f9ff;
+}
+
+.all-events-page .table-responsive {
+  max-height: 70vh;
+  overflow-y: auto;
+}

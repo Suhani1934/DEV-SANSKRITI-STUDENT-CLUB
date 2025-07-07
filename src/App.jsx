@@ -12,6 +12,8 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import ActivityPage from "./pages/ActivityPage";
+import AllEvents from "./pages/AllEvents"; 
 import Welcome from "./pages/Welcome";
 import SubmitTestimonialForm from "./components/SubmitTestimonialForm";
 import StudentDashboard from "./pages/StudentDashboard";
@@ -52,6 +54,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/events" element={<AllEvents />} />
+           <Route path="/activities" element={<ActivityPage />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route

@@ -8,6 +8,7 @@ const HeroSection = ({ upcomingEvent }) => {
     <section className="hero-section py-5 d-flex align-items-center">
       <div className="container">
         <div className="row g-4 align-items-center">
+          
           {/* Left Side - Hero Text */}
           <div className="col-lg-7 text-center text-lg-start">
             <h1 className="display-4 text-primary animate__animated animate__fadeInDown">
@@ -26,8 +27,7 @@ const HeroSection = ({ upcomingEvent }) => {
 
           {/* Right Side - Upcoming Event */}
           <div className="col-lg-5">
-            <div className="event-card p-4 rounded shadow animate__animated animate__fadeInRight">
-              <h4 className="text-primary mb-3">📅 Upcoming Event</h4>
+            <div className="event-card p-2 rounded shadow animate__animated animate__fadeInRight">
               <UpcomingEvents />
               
             </div>

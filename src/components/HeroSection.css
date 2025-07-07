@@ -1,7 +1,7 @@
 .hero-section {
-  background: linear-gradient(135deg, #00296b, #f5c400);
+  background: linear-gradient(135deg, #f5c400,#00296b);
   color: white;
-  min-height: 400px;
+  min-height: 80%;
 }
 
 .hero-section .event-card {

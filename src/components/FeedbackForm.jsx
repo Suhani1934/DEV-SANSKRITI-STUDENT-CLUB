@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Alert, Button, Form, Spinner } from "react-bootstrap";
-import "./FeedbackForm.css"; // For additional animations
+import "./FeedbackForm.css";
 
 const FeedbackForm = () => {
   const { clubId } = useParams();

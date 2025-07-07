@@ -10,6 +10,8 @@ import ManageEvents from "../components/ManageEvents";
 import ManageClubDetails from "../components/ManageClubDetails";
 import AdminFeedbacks from "../components/AdminFeedback";
 import ManageTestimonials from "../components/ManageTestimonials"
+import UploadGalleryImage from "../components/UploadGalleryImage";
+
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -119,6 +121,14 @@ const AdminDashboard = () => {
             >
               Manage Events
             </button>
+            <button
+              className={`btn ${
+                activeTab === "gallery" ? "btn-warning" : "btn-outline-warning"
+              }`}
+              onClick={() => setActiveTab("gallery")}
+            >
+              Upload Images
+            </button>
 
             <button
               className={`btn ${
@@ -215,6 +225,11 @@ const AdminDashboard = () => {
           {activeTab === "events" && (
             <>
               <ManageEvents />
+            </>
+          )}
+          {activeTab === "gallery" && (
+            <>
+              <UploadGalleryImage />
             </>
           )}
 
