@@ -23,6 +23,7 @@ const ClubDetailPage = () => {
   const { clubId } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   const galleryImages = [
     banner5,
@@ -39,14 +40,20 @@ const ClubDetailPage = () => {
   ];
 
   const fetchClubDetail = async () => {
+    setLoading(true);
+    setNotFound(false);
     try {
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/api/club-details/${clubId}`
       );
       setData(res.data);
-      setLoading(false);
     } catch (err) {
+      if (err.response && err.response.status === 404) {
+        setNotFound(true);
+      }
+      setData(null);
       console.error("[FETCH CLUB DETAIL ERROR]", err);
+    } finally {
       setLoading(false);
     }
   };
@@ -62,10 +69,24 @@ const ClubDetailPage = () => {
       </div>
     );
 
+  if (notFound)
+    return (
+      <div className="container py-5 text-center">
+        <h2 className="text-danger mb-3">Club not found</h2>
+        <p>The club you are looking for does not exist or has been removed.</p>
+        <a href="/" className="btn btn-primary mt-3">
+          Back to Home
+        </a>
+      </div>
+    );
+
   if (!data)
     return (
-      <div className="container py-5">
-        <h2>Club not found</h2>
+      <div className="container py-5 text-center">
+        <h2 className="text-danger mb-3">Error loading club details</h2>
+        <a href="/" className="btn btn-primary mt-3">
+          Back to Home
+        </a>
       </div>
     );
 
