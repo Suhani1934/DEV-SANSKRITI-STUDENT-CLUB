@@ -76,25 +76,6 @@ const Home = () => {
 
       <ThoughtOfTheDay/>
       <HeroSection upcomingEvent={UpcomingEvents} />
-      {/* Hero Banner */}
-      {/* <section className="hero text-white text-center d-flex align-items-center justify-content-center">
-        <div className="container">
-          <h1 className="display-4 animate__animated animate__fadeInDown">
-            Dev Sanskriti Student's Clubs
-          </h1>
-          <p className="lead animate__animated animate__fadeInUp">
-            Explore, join and enjoy amazing student clubs!
-          </p>
-          <Link
-            to="/register"
-            className="btn btn-warning btn-lg mt-3 animate__animated animate__fadeInUp"
-          >
-            <i className="bi bi-pencil-square me-1"></i>Get Started
-          </Link>
-        </div>
-      </section> */}
-
-      {/* <UpcomingEvents /> */}
 
       {/* Clubs Cards */}
       <section className="container py-5">

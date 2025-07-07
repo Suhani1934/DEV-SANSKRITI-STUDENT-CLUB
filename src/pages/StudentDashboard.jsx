@@ -184,12 +184,6 @@ const StudentDashboard = () => {
               Selected Category: {studentCategory || 'N/A'}
             </p>
 
-            {/* {club.categories?.length > 0 && (
-              <p className="text-secondary mb-2">
-                <small>Available Categories: {club.categories.join(', ')}</small>
-              </p>
-            )} */}
-
             <button
               className="btn btn-primary btn-sm mt-auto"
               onClick={() => navigate(`/clubs/${club._id}`)}
