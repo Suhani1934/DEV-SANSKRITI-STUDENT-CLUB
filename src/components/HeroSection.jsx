@@ -21,7 +21,7 @@ const images = [
   banner9,
 ];
 
-const HeroSection = ({ upcomingEvent }) => {
+const HeroSection = () => {
   return (
     <section className="hero-section position-relative">
       {/* Swiper Background */}

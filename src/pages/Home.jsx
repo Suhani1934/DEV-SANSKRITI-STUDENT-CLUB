@@ -73,22 +73,21 @@ const Home = () => {
 
   return (
     <div className="home-page">
-
-      <ThoughtOfTheDay/>
+      <ThoughtOfTheDay />
       <HeroSection upcomingEvent={UpcomingEvents} />
 
       {/* Clubs Cards */}
       <section className="container py-5">
         <h2 className="mb-4 text-center text-primary">Our Clubs</h2>
-        <div className="row g-4">
+        <div className="club-flex-wrapper">
           {Array.isArray(clubs) && clubs.length > 0 ? (
             clubs.map((club) => (
-              <div className="col-md-6 col-lg-4 mb-4" key={club._id}>
+              <div className="club-card-wrapper" key={club._id}>
                 <ClubCard club={club} onEnroll={handleEnroll} />
               </div>
             ))
           ) : (
-            <div className="col-12">
+            <div className="w-100">
               <p className="text-center text-muted">No clubs found.</p>
             </div>
           )}
@@ -96,7 +95,7 @@ const Home = () => {
       </section>
 
       <Testimonials />
-      
+
       {/* Gallery Slider */}
       <GallerySlider images={galleryImages} />
       <FAQ />

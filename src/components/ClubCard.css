@@ -11,10 +11,13 @@
 
 .club-card-img-wrapper {
   overflow: hidden;
-  height: 200px;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  cursor: pointer;
 }
 
 .club-img {
+  padding: 1.5rem;
   width: 100%;
   height: 100%;
   object-fit: cover;

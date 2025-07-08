@@ -1,46 +1,45 @@
-.hero-section {
+/* Full-screen image styling */
+.hero-bg-swiper {
+  height: 83vh;
   position: relative;
-  overflow: hidden;
-  height: 100vh;
+  z-index: 1;
 }
 
-.hero-bg-swiper {
+.bg-img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* Overlay styling */
+.hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
-}
-
-.hero-bg-swiper .bg-img {
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
-  filter: brightness(0.5);
-}
-
-.hero-overlay {
-  position: relative;
   z-index: 2;
+  background: rgba(0, 0, 0, 0.4); 
 }
 
-/* Customize pagination bullets */
+/* Swiper pagination bullets */
 .swiper-pagination-bullets {
   bottom: 20px !important;
 }
 
 .swiper-pagination-bullet {
+  background: #fff;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
   background: #ffc107;
   opacity: 1;
 }
 
-.swiper-pagination-bullet-active {
-  background: #0d6efd;
-}
-
-/* Navigation buttons */
-.swiper-button-prev,
-.swiper-button-next {
+/* Swiper navigation arrows */
+.swiper-button-next,
+.swiper-button-prev {
   color: #fff;
+  z-index: 3;
 }

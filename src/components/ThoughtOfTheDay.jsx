@@ -26,7 +26,7 @@ const ThoughtOfTheDay = () => {
     <div className="thought-container py-2 px-3">
       <div className="thought-marquee">
         <span>
-          📅 <strong>{dateString}</strong> | Thought of the Day: {thought}
+          📅 <strong>{dateString}</strong> | 🎯 Thought of the Day: {thought}
         </span>
       </div>
     </div>

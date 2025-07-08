@@ -9,11 +9,10 @@ const ClubCard = ({ club }) => {
 
   return (
     <>
-      <div className="card club-card shadow-lg border-0 h-100">
+      <div className="card club-card shadow-lg border-0 h-100 d-flex flex-column">
         <div
           className="club-card-img-wrapper"
           onClick={() => setShowModal(true)}
-          style={{ cursor: "pointer" }}
         >
           <img
             src={club.image}
@@ -21,10 +20,13 @@ const ClubCard = ({ club }) => {
             alt={club.name}
           />
         </div>
+
         <div className="card-body d-flex flex-column p-4">
-          <h5 className="card-title text-blue fw-bold">{club.name}</h5>
-          <p className="card-text text-muted flex-grow-1">
-            {club.description?.substring(0, 100)}...
+          <h5 className="card-title text-blue fw-bold mb-2">{club.name}</h5>
+          <p className="card-text text-muted flex-grow-1 mb-3">
+            {club.description?.length > 100
+              ? club.description.substring(0, 100) + "..."
+              : club.description}
           </p>
           <button
             className="btn btn-yellow w-100 d-flex align-items-center justify-content-center gap-2 mt-auto"
@@ -35,11 +37,11 @@ const ClubCard = ({ club }) => {
         </div>
       </div>
 
+      {/* Enlarged Modal */}
       <Modal
         show={showModal}
         onHide={() => setShowModal(false)}
         centered
-        size="lg"
       >
         <Modal.Header closeButton>
           <Modal.Title>{club.name}</Modal.Title>
@@ -53,15 +55,15 @@ const ClubCard = ({ club }) => {
           <p>{club.description || "No description available."}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => setShowModal(false)}
-          >
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
             Close
           </Button>
           <Button
             variant="primary"
-            onClick={() => navigate(`/clubs/${club._id}`)}
+            onClick={() => {
+              setShowModal(false);
+              navigate(`/clubs/${club._id}`);
+            }}
           >
             View Full Page
           </Button>

@@ -1,26 +1,24 @@
-/* Hero Section */
-.hero {
-    height: 83vh;
-    background: linear-gradient(rgba(0, 0, 255, 0.658),rgba(255, 255, 0, 0.712));
-    overflow: hidden;
-    position: relative;
-    background-size: cover;
-    animation: slideshow 25s infinite linear;
-}
-
-/* Club Cards Hover */
-.club-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    transition: all 0.3s ease-in-out;
-}
-
-.club-image {
-    height: 200px;
-    object-fit: cover;
-}
-
 /* Gallery */
-.carousel-inner img {
-    height: 400px;
-    object-fit: cover;
+.club-flex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.club-card-wrapper {
+  flex: 0 1 calc(33.333% - 1rem); /* 3 per row on large screens */
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .club-card-wrapper {
+    flex: 0 1 calc(50% - 1rem); /* 2 per row on tablets */
+  }
+}
+
+@media (max-width: 576px) {
+  .club-card-wrapper {
+    flex: 0 1 100%; /* 1 per row on small screens */
+  }
 }
