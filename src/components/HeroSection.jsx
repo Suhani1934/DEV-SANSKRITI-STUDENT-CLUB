@@ -45,21 +45,11 @@ const HeroSection = () => {
       <div className="hero-overlay py-5 d-flex align-items-center">
         <div className="container">
           <div className="row g-4 align-items-center">
-            <div className="col-lg-7 text-center text-lg-start text-white">
-              <h1 className="display-4 animate__animated animate__fadeInDown">
-                Dev Sanskriti Student's Clubs
-              </h1>
-              <p className="lead animate__animated animate__fadeInUp">
-                Explore, join, and enjoy amazing student clubs!
-              </p>
-              <Link
-                to="/register"
-                className="btn btn-warning btn-lg mt-3 animate__animated animate__fadeInUp"
-              >
-                <i className="bi bi-pencil-square me-1"></i> Get Started
-              </Link>
+            <div className="col-lg-5">
+              <div className="event-card p-2 rounded shadow animate__animated animate__fadeInRight bg-white">
+                <UpcomingEvents />
+              </div>
             </div>
-
             <div className="col-lg-5">
               <div className="event-card p-2 rounded shadow animate__animated animate__fadeInRight bg-white">
                 <UpcomingEvents />
