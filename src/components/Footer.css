@@ -4,8 +4,8 @@
 }
 
 .footer-logo {
-    width: 120px;
-    height: auto;
+    width: 80px;
+    height: 100px;
 }
 
 .text-yellow {
@@ -41,7 +41,7 @@
 }
 
 .footer-logo {
-    height: 7rem;
+    height: 4rem;
     width: auto;
     transition: transform 0.3s ease;
 }

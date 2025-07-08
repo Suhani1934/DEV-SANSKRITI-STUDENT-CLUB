@@ -11,7 +11,7 @@ const Footer = () => {
                     {/* Logo and About */}
                     <div className="col-md-4 mb-4 mb-md-0 text-center text-md-start">
                         <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
-                            <img src="DSVV_LOGO_WHITE.png" alt="University Logo" className="footer-logo mb-2" />
+                            <img src="Student_Club_Logo_White.png" alt="University Logo" className="footer-logo mb-2" />
                         </Link>
                         <p className="small">Empowering students through creativity and collaboration at our vibrant university clubs.</p>
                     </div>
@@ -43,7 +43,7 @@ const Footer = () => {
 
                 {/* Copyright */}
                 <div className="text-center pt-4 mt-4 border-top border-yellow small">
-                    &copy; {new Date().getFullYear()} Dev sanskriti Student's Club. All Rights Reserved.
+                    &copy; {new Date().getFullYear()} Software Development Cell Dev Sanskriti Vishwavidyalaya. All Rights Reserved.
                 </div>
             </div>
         </footer>

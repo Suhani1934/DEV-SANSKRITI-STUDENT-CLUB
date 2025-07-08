@@ -44,7 +44,7 @@ const Navbar = () => {
     >
       <div className="container py-2">
         <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
-          <img src="Student_Club_Logo.png" alt="Logo" height="50" />
+          <img src="Student_Club_Logo_Black.png" alt="Logo" height="50" />
         </Link>
         <button
           className="navbar-toggler border-0"
