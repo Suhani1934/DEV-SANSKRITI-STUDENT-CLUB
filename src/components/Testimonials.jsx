@@ -62,7 +62,7 @@ const Testimonials = () => {
           className="text-white fw-bold"
           onClick={() => navigate("/submit-testimonial")}
         >
-          Share Your Experience
+          Share Your Thought
         </Button>
       </div>
 

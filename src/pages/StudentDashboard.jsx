@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import StudentSidebar from '../components/StudentSidebar';
-import StudentProfile from '../components/StudentProfile';
-import { toast } from 'react-toastify';
-import CategorySelectModal from '../components/CategorySelectModal';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import StudentSidebar from "../components/StudentSidebar";
+import StudentProfile from "../components/StudentProfile";
+import { toast } from "react-toastify";
+import CategorySelectModal from "../components/CategorySelectModal";
 
 const StudentDashboard = () => {
-  const [activeTab, setActiveTab] = useState('profile');
+  const [activeTab, setActiveTab] = useState("profile");
   const [student, setStudent] = useState({});
   const [clubs, setClubs] = useState([]);
   const [enrolledClubIds, setEnrolledClubIds] = useState([]);
@@ -15,7 +15,7 @@ const StudentDashboard = () => {
   const [requestedClubIds, setRequestedClubIds] = useState([]);
   const [enrollmentRequests, setEnrollmentRequests] = useState([]);
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   // Modal states
   const [showCategoryModal, setShowCategoryModal] = useState(false);
@@ -36,53 +36,61 @@ const StudentDashboard = () => {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/clubs`);
       setClubs(res.data);
     } catch {
-      toast.error('Failed to load clubs');
+      toast.error("Failed to load clubs");
     }
   };
 
   const fetchStudent = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/me`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/users/me`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const enrolled = res.data.enrolledClubs || [];
       setEnrolledClubIds(enrolled.map((enroll) => enroll.club?._id));
       setEnrolledClubs(enrolled);
       setStudent(res.data);
-
     } catch {
-      toast.error('Failed to fetch student info');
+      toast.error("Failed to fetch student info");
     }
   };
 
   const fetchRequestedClubIds = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/enrollment-requests/my-requests`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/enrollment-requests/my-requests`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const ids = res.data
-        .filter(req => req.status === 'pending')
-        .map(req => req.club._id);
+        .filter((req) => req.status === "pending")
+        .map((req) => req.club._id);
       setRequestedClubIds(ids);
     } catch {
-      toast.error('Failed to load requested clubs');
+      toast.error("Failed to load requested clubs");
     }
   };
 
   const fetchEnrollmentRequests = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/enrollment-requests/my-requests`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/enrollment-requests/my-requests`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setEnrollmentRequests(res.data);
     } catch {
-      toast.error('Failed to fetch request history');
+      toast.error("Failed to fetch request history");
     }
   };
 
   const handleRequestEnroll = (clubId, clubCategories) => {
     if (!clubCategories || clubCategories.length === 0) {
-      toast.error('No categories available for this club');
+      toast.error("No categories available for this club");
       return;
     }
     setSelectedClubId(clubId);
@@ -93,26 +101,31 @@ const StudentDashboard = () => {
   const handleConfirmCategory = async (category) => {
     try {
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/enrollment-requests/${selectedClubId}`,
+        `${
+          import.meta.env.VITE_API_URL
+        }/api/enrollment-requests/${selectedClubId}`,
         { category },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      toast.success('Enrollment request sent!');
+      toast.success("Enrollment request sent!");
       fetchRequestedClubIds();
     } catch (err) {
-      toast.error(err.response?.data?.error || 'Failed to send request');
+      toast.error(err.response?.data?.error || "Failed to send request");
     }
   };
 
   const handleUnenroll = async (clubId) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/api/enroll/unenroll/${clubId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      toast.success('Unenrolled successfully!');
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/enroll/unenroll/${clubId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      toast.success("Unenrolled successfully!");
       fetchStudent();
     } catch (err) {
-      toast.error(err.response?.data?.error || 'Unenrollment failed');
+      toast.error(err.response?.data?.error || "Unenrollment failed");
     }
   };
 
@@ -120,23 +133,23 @@ const StudentDashboard = () => {
     <div className="col-md-6 col-lg-4 mb-4" key={club._id}>
       <div className="card h-100 shadow-sm">
         <img
-          src={`/${club.image}`}
+          src={club.image}
           className="card-img-top"
           alt={club.name}
-          style={{ height: '180px', objectFit: 'cover' }}
+          style={{ height: "180px", objectFit: "cover" }}
         />
+
         <div className="card-body d-flex flex-column">
           <h5 className="card-title text-primary fw-bold">{club.name}</h5>
 
           <p className="card-text text-muted flex-grow-1 mb-2">
-            {club.description?.slice(0, 100) || 'No description available'}
+            {club.description?.slice(0, 100) || "No description available"}
           </p>
 
           {club.categories?.length > 0 && (
             <p className="text-secondary mb-2">
-              <small>Categories: {club.categories.join(', ')}</small>
+              <small>Categories: {club.categories.join(", ")}</small>
             </p>
-
           )}
 
           {/* {enrolledClubIds.includes(club._id) ? (
@@ -149,7 +162,10 @@ const StudentDashboard = () => {
               Requested
             </button>
           ) : (
-            <button className="btn btn-primary btn-sm mt-auto" onClick={() => handleRequestEnroll(club._id, club.categories)}>
+            <button
+              className="btn btn-primary btn-sm mt-auto"
+              onClick={() => handleRequestEnroll(club._id, club.categories)}
+            >
               Click here to Enroll
             </button>
           )}
@@ -168,20 +184,20 @@ const StudentDashboard = () => {
       <div className="col-md-6 col-lg-4 mb-4" key={club._id}>
         <div className="card h-100 shadow-sm">
           <img
-            src={`/${club.image}`}
+            src={club.image}
             className="card-img-top"
             alt={club.name}
-            style={{ height: '180px', objectFit: 'cover' }}
+            style={{ height: "180px", objectFit: "cover" }}
           />
           <div className="card-body d-flex flex-column">
             <h5 className="card-title text-primary fw-bold">{club.name}</h5>
 
             <p className="card-text text-muted flex-grow-1 mb-2">
-              {club.description?.slice(0, 100) || 'No description available'}
+              {club.description?.slice(0, 100) || "No description available"}
             </p>
 
             <p className="text-success mb-2 fw-semibold">
-              Selected Category: {studentCategory || 'N/A'}
+              Selected Category: {studentCategory || "N/A"}
             </p>
 
             <button
@@ -196,7 +212,6 @@ const StudentDashboard = () => {
     );
   };
 
-
   return (
     <div className="container-fluid">
       <div className="row vh-100">
@@ -204,36 +219,43 @@ const StudentDashboard = () => {
           <StudentSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
         <div className="col-md-9 p-4 overflow-auto">
+          {activeTab === "profile" && <StudentProfile student={student} />}
 
-          {activeTab === 'profile' && <StudentProfile student={student} />}
-
-          {activeTab === 'clubs' && (
+          {activeTab === "clubs" && (
             <>
               <h4>Clubs</h4>
-              <div className="row g-3 mt-3">{clubs.map((club) => renderClubCard(club))}</div>
+              <div className="row g-3 mt-3">
+                {clubs.map((club) => renderClubCard(club))}
+              </div>
             </>
           )}
 
-          {activeTab === 'enrolled' && (
+          {activeTab === "enrolled" && (
             <>
               <h4>Enrolled Clubs</h4>
               <div className="row g-3 mt-3">
                 {enrolledClubs.length > 0 ? (
-                  enrolledClubs.map((enrolledClub) => renderEnrolledClubCard(enrolledClub))
+                  enrolledClubs.map((enrolledClub) =>
+                    renderEnrolledClubCard(enrolledClub)
+                  )
                 ) : (
                   <div className="col-12">
-                    <p className="text-muted">You are not enrolled in any clubs.</p>
+                    <p className="text-muted">
+                      You are not enrolled in any clubs.
+                    </p>
                   </div>
                 )}
               </div>
             </>
           )}
 
-          {activeTab === 'requests' && (
+          {activeTab === "requests" && (
             <>
               <h4>Enrollment Request Status</h4>
               {enrollmentRequests.length === 0 ? (
-                <p className="text-muted">You have not made any enrollment requests.</p>
+                <p className="text-muted">
+                  You have not made any enrollment requests.
+                </p>
               ) : (
                 <table className="table table-bordered mt-3">
                   <thead>
@@ -249,25 +271,33 @@ const StudentDashboard = () => {
                         <td>
                           <ul className="mb-0 ps-3">
                             <li>
-                              <strong>{req.club?.name || 'Unknown Club'}</strong>
+                              <strong>
+                                {req.club?.name || "Unknown Club"}
+                              </strong>
                               <br />
-                              <small className="text-muted">Category: {req.category || 'N/A'}</small>
+                              <small className="text-muted">
+                                Category: {req.category || "N/A"}
+                              </small>
                             </li>
                           </ul>
                         </td>
                         <td>
                           <span
-                            className={`badge ${req.status === 'pending'
-                              ? 'bg-warning text-dark'
-                              : req.status === 'accepted'
-                                ? 'bg-success'
-                                : 'bg-danger'
-                              }`}
+                            className={`badge ${
+                              req.status === "pending"
+                                ? "bg-warning text-dark"
+                                : req.status === "accepted"
+                                ? "bg-success"
+                                : "bg-danger"
+                            }`}
                           >
-                            {req.status.charAt(0).toUpperCase() + req.status.slice(1)}
+                            {req.status.charAt(0).toUpperCase() +
+                              req.status.slice(1)}
                           </span>
-                          {req.status === 'rejected' && req.message && (
-                            <div className="text-danger mt-1 small">{req.message}</div>
+                          {req.status === "rejected" && req.message && (
+                            <div className="text-danger mt-1 small">
+                              {req.message}
+                            </div>
                           )}
                         </td>
                         <td>{new Date(req.createdAt).toLocaleDateString()}</td>

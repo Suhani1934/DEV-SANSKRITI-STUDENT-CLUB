@@ -250,7 +250,7 @@ const AdminDashboard = () => {
                   <div className="col-md-6 col-lg-4" key={club._id}>
                     <div className="card shadow-sm h-100">
                       <img
-                        src={`/${club.image}`}
+                        src={club.image}
                         alt={club.name}
                         className="card-img-top"
                         style={{ height: "200px", objectFit: "cover" }}
