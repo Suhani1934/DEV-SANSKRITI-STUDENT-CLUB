@@ -13,9 +13,7 @@ const ActivityPage = () => {
 
   const fetchImages = async () => {
     try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/gallery`
-      );
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/gallery`);
       setImages(res.data);
     } catch (err) {
       console.error("[FETCH GALLERY ERROR]", err);
@@ -32,9 +30,7 @@ const ActivityPage = () => {
   return (
     <section className="activity-page py-5 bg-light">
       <div className="container">
-        <h2 className="text-center mb-4 text-primary fw-bold">
-          Activities Gallery
-        </h2>
+        <h2 className="text-center mb-4 text-primary fw-bold">Activities Gallery</h2>
 
         {loading ? (
           <div className="d-flex justify-content-center py-5">
@@ -43,16 +39,17 @@ const ActivityPage = () => {
         ) : images.length === 0 ? (
           <p className="text-center">No activity images available.</p>
         ) : (
-          <div className="row g-4">
+          <div className="row gy-4">
             {images.map((img) => (
-              <div key={img._id} className="col-6 col-md-4 col-lg-3">
+              <div key={img._id} className="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div
-                  className="activity-image-card shadow rounded overflow-hidden"
+                  className="activity-image-card shadow-sm rounded overflow-hidden position-relative"
                   onClick={() => setSelectedImage(img)}
+                  style={{ cursor: "pointer", aspectRatio: "4/3" }}
                 >
                   <LazyLoadImage
                     src={img.url}
-                    alt={img.caption || "Activity image"}
+                    alt={img.caption || ""}
                     className="w-100 h-100 object-fit-cover"
                     effect="blur"
                   />
@@ -72,9 +69,7 @@ const ActivityPage = () => {
           {selectedImage && (
             <>
               <Modal.Header closeButton>
-                <Modal.Title>
-                  {selectedImage.caption || "Activity Image"}
-                </Modal.Title>
+                <Modal.Title>{selectedImage.caption || "Activity Image"}</Modal.Title>
               </Modal.Header>
               <Modal.Body className="text-center">
                 <img
