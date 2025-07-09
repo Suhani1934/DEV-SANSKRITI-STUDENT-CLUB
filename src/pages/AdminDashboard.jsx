@@ -319,7 +319,7 @@ const AdminDashboard = () => {
           )}
           {activeTab === "testimonials" && (
             <>
-              <h3 className="mb-4 text-primary">View All Testimonials</h3>
+              <h3 className="mb-4 text-primary">Manage All Testimonials</h3>
               <ManageTestimonials />
             </>
           )}
