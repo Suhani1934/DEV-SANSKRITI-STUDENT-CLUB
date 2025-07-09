@@ -7,11 +7,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
 import ThoughtOfTheDay from "../components/ThoughtOfTheDay";
 import HeroSection from "../components/HeroSection";
-import UpcomingEvents from "../components/UpcomingEvents";
 import GallerySlider from "../components/GallerySlider";
 import ClubCard from "../components/ClubCard";
 import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
+import LatestNews from "../components/LatestNews";
+import InfoSection from "../components/InfoSection";
 
 import banner5 from "../assets/Banners/banner5.PNG";
 import banner6 from "../assets/Banners/banner6.PNG";
@@ -74,7 +75,9 @@ const Home = () => {
   return (
     <div className="home-page">
       <ThoughtOfTheDay />
-      <HeroSection upcomingEvent={UpcomingEvents} />
+      <HeroSection />
+      <LatestNews />
+      <InfoSection/>
 
       {/* Clubs Cards */}
       <section className="container py-5">

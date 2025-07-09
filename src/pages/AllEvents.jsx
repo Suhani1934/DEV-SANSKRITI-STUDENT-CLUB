@@ -7,7 +7,7 @@ const AllEvents = () => {
   const [events, setEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const filter = searchParams.get("filter") || "forthcoming";
+  const filter = searchParams.get("filter") || "upcoming";
 
   const fetchEvents = async () => {
     try {
@@ -24,14 +24,11 @@ const AllEvents = () => {
 
   useEffect(() => {
     const now = new Date();
-    const year = now.getFullYear();
 
     let filtered = events;
 
-    if (filter === "forthcoming") {
+    if (filter === "upcoming") {
       filtered = events.filter((e) => new Date(e.date) >= now);
-    } else if (filter === "current") {
-      filtered = events.filter((e) => new Date(e.date).getFullYear() === year);
     } else if (filter === "past") {
       filtered = events.filter((e) => new Date(e.date) < now);
     }
@@ -47,25 +44,29 @@ const AllEvents = () => {
           <div className="col-md-3 mb-4">
             <div className="btn-group-vertical w-100" role="group">
               <button
-                onClick={() => setSearchParams({ filter: "forthcoming" })}
+                onClick={() => setSearchParams({ filter: "upcoming" })}
                 className={`btn ${
-                  filter === "forthcoming" ? "btn-warning text-white" : "btn-outline-warning"
+                  filter === "upcoming"
+                    ? "btn-warning text-white"
+                    : "btn-outline-warning"
                 } mb-2`}
               >
-                <i className="bi bi-calendar-plus me-2"></i> Forthcoming Events
+                <i className="bi bi-calendar-plus me-2"></i> Upcoming Events
               </button>
-              <button
+              {/* <button
                 onClick={() => setSearchParams({ filter: "current" })}
                 className={`btn ${
                   filter === "current" ? "btn-warning text-white" : "btn-outline-warning"
                 } mb-2`}
               >
                 <i className="bi bi-calendar-check me-2"></i> Current Year Events
-              </button>
+              </button> */}
               <button
                 onClick={() => setSearchParams({ filter: "past" })}
                 className={`btn ${
-                  filter === "past" ? "btn-warning text-white" : "btn-outline-warning"
+                  filter === "past"
+                    ? "btn-warning text-white"
+                    : "btn-outline-warning"
                 }`}
               >
                 <i className="bi bi-calendar-x me-2"></i> Past Events
@@ -103,7 +104,8 @@ const AllEvents = () => {
             </div>
 
             <div className="text-end mt-3 small text-muted">
-              Showing {filteredEvents.length} {filteredEvents.length === 1 ? "entry" : "entries"}
+              Showing {filteredEvents.length}{" "}
+              {filteredEvents.length === 1 ? "entry" : "entries"}
             </div>
           </div>
         </div>

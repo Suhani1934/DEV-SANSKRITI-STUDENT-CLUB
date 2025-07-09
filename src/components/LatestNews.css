@@ -1,0 +1,23 @@
+.latest-news-container {
+  display: flex;
+  align-items: center;
+  border: 2px solid #d8a700;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+.news-label {
+  background-color: #d8201f;
+  color: white;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-right: 10px solid transparent;
+  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0 52%, 0% 0%);
+}
+
+.news-content {
+  padding: 10px 16px;
+  color: #b30000;
+  font-size: 16px;
+}
