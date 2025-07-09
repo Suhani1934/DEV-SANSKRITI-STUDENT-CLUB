@@ -13,14 +13,10 @@ const SubmitTestimonialForm = () => {
     photo: null,
   });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(null);
-  const [error, setError] = useState(null);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setSuccess(null);
-    setError(null);
 
     try {
       const data = new FormData();
@@ -33,12 +29,10 @@ const SubmitTestimonialForm = () => {
         `${import.meta.env.VITE_API_URL}/api/testimonials`,data
       );
 
-      setSuccess(res.data.message);
       setFormData({ name: "", course: "", text: "", photo: null });
-      toast.success("Testimonial submitted successfully!");
+      toast.success("Testimonial submitted successfully, pending approval!");
     } catch (err) {
       console.error("[SUBMIT TESTIMONIAL ERROR]", err);
-      setError(err.response?.data?.error || "Failed to submit testimonial");
       toast.error("Failed to submit testimonial");
     } finally {
       setLoading(false);
@@ -48,9 +42,6 @@ const SubmitTestimonialForm = () => {
   return (
     <div className="container py-5 testimonial-form-container shadow rounded">
       <h2 className="mb-4 text-primary">Share Your Experience</h2>
-
-      {success && <Alert variant="success">{success}</Alert>}
-      {error && <Alert variant="danger">{error}</Alert>}
 
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3">
