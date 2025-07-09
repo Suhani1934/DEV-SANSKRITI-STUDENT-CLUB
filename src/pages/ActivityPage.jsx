@@ -69,7 +69,7 @@ const ActivityPage = () => {
           {selectedImage && (
             <>
               <Modal.Header closeButton>
-                <Modal.Title>{selectedImage.caption || "Activity Image"}</Modal.Title>
+                <Modal.Title>{selectedImage.caption || ""}</Modal.Title>
               </Modal.Header>
               <Modal.Body className="text-center">
                 <img
