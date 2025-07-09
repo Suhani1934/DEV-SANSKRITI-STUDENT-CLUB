@@ -111,8 +111,7 @@ const InfoSection = () => {
           </div>
 
           <Button
-            variant="dark"
-            className="mt-3 w-100"
+            variant="dark" className="mt-3"
             onClick={() => navigate("/events")}
           >
             View All
