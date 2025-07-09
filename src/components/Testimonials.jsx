@@ -38,6 +38,21 @@ const Testimonials = () => {
     );
   }
 
+  if (testimonials.length === 0) {
+    return (
+      <div className="container text-center py-5">
+        <h4>No approved testimonials yet.</h4>
+        <Button
+          variant="warning"
+          className="text-white fw-bold mt-3"
+          onClick={() => navigate("/submit-testimonial")}
+        >
+          Be the First to Share!
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <div className="container testimonial-section py-5">
       <div className="d-flex justify-content-between align-items-center mb-4 px-2 px-md-4">
@@ -54,10 +69,10 @@ const Testimonials = () => {
       <div className="testimonial-slider-wrapper mx-auto">
         <Swiper
           slidesPerView={3}
-          slidesPerGroup={1}    
+          slidesPerGroup={1}
           spaceBetween={30}
-          loop
-          autoplay={{ delay:4000, disableOnInteraction: false }}
+          loop={testimonials.length >= 4}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           modules={[Autoplay, Pagination]}
           breakpoints={{

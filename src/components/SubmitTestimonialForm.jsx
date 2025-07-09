@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Alert, Button, Form, Spinner } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import courses from "../data/courses";
 import "./SubmitTestimonialForm.css";

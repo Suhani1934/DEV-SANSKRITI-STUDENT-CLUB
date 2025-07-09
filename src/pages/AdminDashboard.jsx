@@ -106,7 +106,7 @@ const AdminDashboard = () => {
           <div className="d-flex flex-column gap-3">
             <button
               className={`btn ${
-                activeTab === "profile" ? "btn-warning" : "btn-outline-warning"
+                activeTab === "profile" ? "btn-primary" : "btn-outline-primary"
               }`}
               onClick={() => setActiveTab("profile")}
             >
@@ -115,7 +115,7 @@ const AdminDashboard = () => {
 
             <button
               className={`btn ${
-                activeTab === "events" ? "btn-warning" : "btn-outline-warning"
+                activeTab === "events" ? "btn-primary" : "btn-outline-primary"
               }`}
               onClick={() => setActiveTab("events")}
             >
@@ -123,7 +123,7 @@ const AdminDashboard = () => {
             </button>
             <button
               className={`btn ${
-                activeTab === "gallery" ? "btn-warning" : "btn-outline-warning"
+                activeTab === "gallery" ? "btn-primary" : "btn-outline-primary"
               }`}
               onClick={() => setActiveTab("gallery")}
             >
@@ -132,7 +132,7 @@ const AdminDashboard = () => {
 
             <button
               className={`btn ${
-                activeTab === "clubs" ? "btn-warning" : "btn-outline-warning"
+                activeTab === "clubs" ? "btn-primary" : "btn-outline-primary"
               }`}
               onClick={() => setActiveTab("clubs")}
             >
@@ -141,8 +141,8 @@ const AdminDashboard = () => {
             <button
               className={`btn ${
                 activeTab === "enrollments"
-                  ? "btn-warning"
-                  : "btn-outline-warning"
+                  ? "btn-primary"
+                  : "btn-outline-primary"
               }`}
               onClick={() => setActiveTab("enrollments")}
             >
@@ -151,7 +151,7 @@ const AdminDashboard = () => {
 
             <button
               className={`btn ${
-                activeTab === "students" ? "btn-warning" : "btn-outline-warning"
+                activeTab === "students" ? "btn-primary" : "btn-outline-primary"
               }`}
               onClick={() => setActiveTab("students")}
             >
@@ -161,8 +161,8 @@ const AdminDashboard = () => {
             <button
               className={`btn ${
                 activeTab === "club-details"
-                  ? "btn-warning"
-                  : "btn-outline-warning"
+                  ? "btn-primary"
+                  : "btn-outline-primary"
               }`}
               onClick={() => setActiveTab("club-details")}
             >
@@ -172,8 +172,8 @@ const AdminDashboard = () => {
             <button
               className={`btn ${
                 activeTab === "feedback"
-                  ? "btn-warning"
-                  : "btn-outline-warning"
+                  ? "btn-primary"
+                  : "btn-outline-primary"
               }`}
               onClick={() => setActiveTab("feedback")}
             >
@@ -182,8 +182,8 @@ const AdminDashboard = () => {
             <button
               className={`btn ${
                 activeTab === "testimonials"
-                  ? "btn-warning"
-                  : "btn-outline-warning"
+                  ? "btn-primary"
+                  : "btn-outline-primary"
               }`}
               onClick={() => setActiveTab("testimonials")}
             >

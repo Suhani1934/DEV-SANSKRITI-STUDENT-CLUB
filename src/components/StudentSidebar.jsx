@@ -5,28 +5,28 @@ const StudentSidebar = ({ activeTab, setActiveTab }) => {
 
             <div className="d-flex flex-column gap-3">
                 <button
-                    className={`btn ${activeTab === 'profile' ? 'btn-warning' : 'btn-outline-warning'}`}
+                    className={`btn ${activeTab === 'profile' ? 'btn-primary' : 'btn-outline-primary'}`}
                     onClick={() => setActiveTab('profile')}
                 >
                     Profile
                 </button>
 
                 <button
-                    className={`btn ${activeTab === 'clubs' ? 'btn-warning' : 'btn-outline-warning'}`}
+                    className={`btn ${activeTab === 'clubs' ? 'btn-primary' : 'btn-outline-primary'}`}
                     onClick={() => setActiveTab('clubs')}
                 >
                     Clubs
                 </button>
 
                 <button
-                    className={`btn ${activeTab === 'enrolled' ? 'btn-warning' : 'btn-outline-warning'}`}
+                    className={`btn ${activeTab === 'enrolled' ? 'btn-primary' : 'btn-outline-primary'}`}
                     onClick={() => setActiveTab('enrolled')}
                 >
                     Enrolled Clubs
                 </button>
 
                 <button
-                    className={`btn ${activeTab === 'requests' ? 'btn-warning' : 'btn-outline-warning'}`}
+                    className={`btn ${activeTab === 'requests' ? 'btn-primary' : 'btn-outline-primary'}`}
                     onClick={() => setActiveTab('requests')}
                 >
                     Request History
