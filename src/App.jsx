@@ -13,11 +13,13 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ActivityPage from "./pages/ActivityPage";
-import AllEvents from "./pages/AllEvents"; 
+import AllEvents from "./pages/AllEvents";
 import Welcome from "./pages/Welcome";
 import SubmitTestimonialForm from "./components/SubmitTestimonialForm";
 import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+
+import Clubs from "./pages/Clubs";
 
 import ClubDetailPage from "./pages/ClubDetailPage";
 
@@ -55,7 +57,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/events" element={<AllEvents />} />
-           <Route path="/activities" element={<ActivityPage />} />
+          <Route path="/clubs" element={<Clubs />} />
+          <Route path="/activities" element={<ActivityPage />} />
 
           <Route path="/welcome" element={<Welcome />} />
           <Route
