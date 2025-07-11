@@ -25,6 +25,11 @@ const InfoSection = () => {
     fetchEvents();
   }, []);
 
+  const today = new Date();
+  const upcomingEvents = events.filter(
+    (event) => new Date(event.date) >= today
+  );
+
   return (
     <div className="container py-5">
       <div className="row g-4">
@@ -35,18 +40,21 @@ const InfoSection = () => {
           </h5>
 
           <div className="list-group rounded shadow-sm event-list-wrapper">
-            {events.length === 0 ? (
+            {upcomingEvents.length === 0 ? (
               <p className="text-center text-muted m-0 p-3">
                 No upcoming events.
               </p>
             ) : (
-              events.map((event) => (
+              upcomingEvents.map((event) => (
                 <div
                   key={event._id}
                   className="list-group-item d-flex align-items-center gap-3 py-3 px-3 event-item"
                 >
                   {/* date */}
-                  <div className="event-date-box text-center bg-primary text-white p-2 rounded" style={{ width: 100 }}>
+                  <div
+                    className="event-date-box text-center bg-primary text-white p-2 rounded"
+                    style={{ width: 100 }}
+                  >
                     <div className="fw-bold text-uppercase">
                       {new Date(event.date).toLocaleString("default", {
                         month: "short",
@@ -73,7 +81,8 @@ const InfoSection = () => {
           </div>
 
           <Button
-            variant="dark" className="mt-3"
+            variant="dark"
+            className="mt-3"
             onClick={() => navigate("/events")}
           >
             View All
