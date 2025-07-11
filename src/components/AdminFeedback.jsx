@@ -6,6 +6,7 @@ const AdminFeedbacks = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const fetchFeedbacks = async () => {
     try {
@@ -21,7 +22,7 @@ const AdminFeedbacks = () => {
       setFeedbacks(res.data);
       setLoading(false);
     } catch (err) {
-      // console.error("[FETCH FEEDBACKS ERROR]", err);
+      console.error("[FETCH FEEDBACKS ERROR]", err);
       setError(err.response?.data?.error || "Failed to fetch feedbacks");
       setLoading(false);
     }
@@ -54,20 +55,20 @@ const AdminFeedbacks = () => {
           <table className="table table-bordered align-middle">
             <thead className="table-primary">
               <tr>
+                <th>#</th>
                 <th>Student</th>
+                <th>Email</th>
                 <th>Club</th>
                 <th>Message</th>
                 <th>Date</th>
               </tr>
             </thead>
             <tbody>
-              {feedbacks.map((fb) => (
+              {feedbacks.map((fb, index) => (
                 <tr key={fb._id}>
-                  <td>
-                    {fb.student?.name || "Unknown"}
-                    <br />
-                    <small>{fb.student?.email || ""}</small>
-                  </td>
+                  <td>{index + 1}</td>
+                  <td>{fb.student?.name || "Unknown"}</td>
+                  <td>{fb.student?.email || ""}</td>
                   <td>{fb.club?.name || "Unknown"}</td>
                   <td>{fb.message}</td>
                   <td>{new Date(fb.createdAt).toLocaleDateString()}</td>

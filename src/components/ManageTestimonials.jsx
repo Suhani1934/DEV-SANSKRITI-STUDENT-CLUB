@@ -269,26 +269,29 @@ const ManageTestimonials = () => {
           </tr>
         </thead>
         <tbody>
-  {currentTestimonials
-    .filter((t) => t.status === "approved" || t.status === "cancelled")
-    .map((t, index) => (
-      <tr key={t._id}>
-        <td>{(currentPage - 1) * testimonialsPerPage + index + 1}</td>
-        <td>{t.name}</td>
-        <td>{t.course}</td>
-        <td>{t.text}</td>
-        <td>{t.photo ? <img src={t.photo} alt="" width={80} /> : "N/A"}</td>
-        <td>
-          {t.status === "approved" ? (
-            <span className="badge bg-success">Approved</span>
-          ) : (
-            <span className="badge bg-danger text-light">Cancelled</span>
-          )}
-        </td>
-      </tr>
-    ))}
-</tbody>
-
+          {currentTestimonials
+            .filter((t) => t.status === "approved" || t.status === "cancelled")
+            .map((t, index) => (
+              <tr key={t._id}>
+                <td>{(currentPage - 1) * testimonialsPerPage + index + 1}</td>
+                <td>{t.name}</td>
+                <td>{t.course}</td>
+                <td>{t.text}</td>
+                <td>
+                  {t.photo ? <img src={t.photo} alt="" width={80} /> : "N/A"}
+                </td>
+                <td>
+                  {t.status === "approved" ? (
+                    <span className="badge bg-success">Approved</span>
+                  ) : (
+                    <span className="badge bg-danger text-light">
+                      Cancelled
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+        </tbody>
       </Table>
 
       {/* Pagination Component */}

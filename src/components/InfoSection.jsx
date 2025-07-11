@@ -12,44 +12,6 @@ const InfoSection = () => {
   const [events, setEvents] = useState([]);
   const [activeTab, setActiveTab] = useState("announcements");
 
-  // const announcements = [
-  //   {
-  //     title:
-  //       "Post-Doctoral Fellowship (PDF) Seats under Visvesvaraya PhD Scheme, Phase II",
-  //     isNew: true,
-  //   },
-  //   {
-  //     title:
-  //       "Information for New UG (BTech & BDes), PG and PhD Students (July 2025)",
-  //     isNew: true,
-  //   },
-  //   {
-  //     title:
-  //       "Admission to 4-Year Bachelor of Science (BS) programme in Biomedical Science and Engineering",
-  //     isNew: true,
-  //   },
-  //   {
-  //     title:
-  //       "Admission to PhD / MTech / MDes / MS(R) / MA Programmes for July 2025 Session",
-  //     isNew: false,
-  //   },
-  //   {
-  //     title: "Admission to MBA Programmes for July 2025 Session",
-  //     isNew: false,
-  //   },
-  // ];
-
-  // const activities = [
-  //   {
-  //     title: "Recruitment Notice for Project Assistants - July 2025",
-  //     isNew: true,
-  //   },
-  //   {
-  //     title: "Walk-in Interview for Technical Staff - 20 July 2025",
-  //     isNew: false,
-  //   },
-  // ];
-
   const fetchEvents = async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/events`);
