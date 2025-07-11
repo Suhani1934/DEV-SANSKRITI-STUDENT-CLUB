@@ -67,7 +67,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link to="/clubs" className="nav-link nav-animated-link">
-                <i className="bi bi-trophy-fill me-1" ></i>Clubs
+                <i className="bi bi-trophy-fill me-1"></i>Clubs
               </Link>
             </li>
             <li className="nav-item">

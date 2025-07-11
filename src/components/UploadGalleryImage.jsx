@@ -22,7 +22,7 @@ const UploadGalleryImage = () => {
     }
 
     try {
-      const token = localStorage.getItem("token"); // if admin auth required
+      const token = localStorage.getItem("token"); 
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/gallery/upload`,
         formData,
