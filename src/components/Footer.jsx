@@ -4,7 +4,7 @@ import './Footer.css';
 
 const Footer = () => {
     return (
-        <footer className="footer mt-auto py-5 text-white">
+        <footer className="footer py-5 text-white">
             <div className="container">
                 <div className="row align-items-center">
 

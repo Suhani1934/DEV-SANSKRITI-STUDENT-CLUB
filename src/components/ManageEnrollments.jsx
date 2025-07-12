@@ -48,6 +48,7 @@ const ManageEnrollments = () => {
       <table className="table table-bordered">
         <thead className="table-primary">
           <tr>
+            <th>#</th>
             <th>Student</th>
             <th>Email</th>
             <th>Club & Categories</th>
@@ -56,8 +57,9 @@ const ManageEnrollments = () => {
           </tr>
         </thead>
         <tbody>
-          {requests.map((req) => (
+          {requests.map((req,index) => (
             <tr key={req._id}>
+              <td>{index+1}</td>
               <td>{req.student?.name}</td>
               <td>{req.student?.email}</td>
               <td>

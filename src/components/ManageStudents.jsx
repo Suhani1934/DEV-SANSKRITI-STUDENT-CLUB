@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 const ManageStudents = () => {
   const [students, setStudents] = useState([]);
   const token = localStorage.getItem("token");
+  const studentPerPage = 10;
 
   useEffect(() => {
     fetchStudents();
@@ -30,6 +31,7 @@ const ManageStudents = () => {
         <table className="table table-bordered mt-3">
           <thead className="table-primary">
             <tr>
+              <th>#</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
@@ -39,8 +41,9 @@ const ManageStudents = () => {
             </tr>
           </thead>
           <tbody>
-            {students.map((student) => (
+            {students.map((student,index) => (
               <tr key={student._id}>
+                <td>{index+1}</td>
                 <td>{student.name}</td>
                 <td>{student.email}</td>
                 <td>{student.phone}</td>

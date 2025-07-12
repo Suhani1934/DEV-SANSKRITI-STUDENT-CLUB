@@ -13,7 +13,7 @@ const ManageTestimonials = () => {
   const [editData, setEditData] = useState(null);
 
   const token = localStorage.getItem("token");
-  const testimonialsPerPage = 3;
+  const testimonialsPerPage = 10;
 
   const fetchPending = async () => {
     try {

@@ -30,7 +30,7 @@ const AdminDashboard = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    setAdminName(localStorage.getItem("userName") || "Admin");
+    setAdminName(localStorage.getItem('userName') || "Admin");
     setEmail(localStorage.getItem("userEmail") || "");
     setRole(localStorage.getItem("userRole") || "");
 
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
         setEmail(res.data.email);
       })
       .catch(() => {
-        setEmail("admin@gmail.com");
+        setEmail("admin19@gmail.com");
       });
   }, [activeTab]);
 
@@ -99,7 +99,8 @@ const AdminDashboard = () => {
 
   return (
     <div className="container-fluid">
-      <div className="row vh-100">
+      <div className="row">
+        
         {/* Sidebar */}
         <div className="col-md-3 bg-light border-end p-3">
           <h5 className="text-primary fw-bold mb-4">Admin Dashboard</h5>

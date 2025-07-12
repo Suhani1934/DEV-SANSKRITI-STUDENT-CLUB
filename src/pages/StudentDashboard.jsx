@@ -152,11 +152,6 @@ const StudentDashboard = () => {
             </p>
           )}
 
-          {/* {enrolledClubIds.includes(club._id) ? (
-            <button className="btn btn-danger btn-sm mt-auto" onClick={() => handleUnenroll(club._id)}>
-              Unenroll
-            </button>
-          ) :  */}
           {requestedClubIds.includes(club._id) ? (
             <button className="btn btn-secondary btn-sm mt-auto" disabled>
               Requested

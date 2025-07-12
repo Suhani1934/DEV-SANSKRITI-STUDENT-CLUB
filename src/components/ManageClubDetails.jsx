@@ -89,14 +89,16 @@ const ManageClubDetails = () => {
         <table className="table table-bordered align-middle">
           <thead className="table-primary">
             <tr>
+              <th>#</th>
               <th>Club Name</th>
               <th>Categories</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {clubs.map((club) => (
+            {clubs.map((club,index) => (
               <tr key={club._id}>
+                <td>{index+1}</td>
                 <td>{club.name}</td>
                 <td>{club.categories.join(", ")}</td>
                 <td>
