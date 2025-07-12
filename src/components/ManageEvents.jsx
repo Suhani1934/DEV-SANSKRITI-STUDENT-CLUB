@@ -102,14 +102,16 @@ const ManageEvents = () => {
         <Table bordered hover responsive className="bg-white shadow-sm">
           <thead>
             <tr>
+              <th>#</th>
               <th>Name</th>
               <th>Date</th>
               <th style={{ width: "160px" }}>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {events.map((event) => (
+            {events.map((event,index) => (
               <tr key={event._id}>
+                <td>{index+1}</td>
                 <td>{event.name}</td>
                 <td>{new Date(event.date).toLocaleDateString()}</td>
                 <td>

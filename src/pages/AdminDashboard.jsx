@@ -11,10 +11,11 @@ import ManageClubDetails from "../components/ManageClubDetails";
 import AdminFeedbacks from "../components/AdminFeedback";
 import ManageTestimonials from "../components/ManageTestimonials"
 import UploadGalleryImage from "../components/UploadGalleryImage";
+import ManageDashboard from "../components/ManageDashboard"
 
 
 const AdminDashboard = () => {
-  const [activeTab, setActiveTab] = useState("profile");
+  const [activeTab, setActiveTab] = useState("dashboard");
   const [adminName, setAdminName] = useState("");
   const [Role, setRole] = useState("");
   const [email, setEmail] = useState("");
@@ -105,13 +106,14 @@ const AdminDashboard = () => {
         <div className="col-md-3 bg-light border-end p-3">
           <h5 className="text-primary fw-bold mb-4">Admin Dashboard</h5>
           <div className="d-flex flex-column gap-3">
+            
             <button
               className={`btn ${
-                activeTab === "profile" ? "btn-primary" : "btn-outline-primary"
+                activeTab === "dashboard" ? "btn-primary" : "btn-outline-primary"
               }`}
-              onClick={() => setActiveTab("profile")}
+              onClick={() => setActiveTab("dashboard")}
             >
-              Profile
+              Dashboard
             </button>
 
             <button
@@ -190,11 +192,26 @@ const AdminDashboard = () => {
             >
               Manage Testimonials
             </button>
+            <button
+              className={`btn ${
+                activeTab === "profile" ? "btn-primary" : "btn-outline-primary"
+              }`}
+              onClick={() => setActiveTab("profile")}
+            >
+              Profile
+            </button>
           </div>
         </div>
 
         {/* Main Content */}
         <div className="col-md-9 p-4 overflow-auto">
+
+          {activeTab === "dashboard" && (
+            <>
+            <ManageDashboard/>
+            {/* <h1>total count</h1> */}
+            </>
+          )}
           {activeTab === "profile" && (
             <>
               <h3 className="mb-4 text-primary">Admin Profile</h3>

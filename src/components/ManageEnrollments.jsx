@@ -4,7 +4,11 @@ import { toast } from "react-toastify";
 
 const ManageEnrollments = () => {
   const [requests, setRequests] = useState([]);
+  const[allEnrollments,setAllEnrollments] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  
   const token = localStorage.getItem("token");
+  const enrollmentsPerPage = 10; 
 
   const fetchRequests = async () => {
     try {
@@ -14,6 +18,7 @@ const ManageEnrollments = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+      setAllEnrollments(res.data);
       setRequests(res.data);
     } catch {
       toast.error("Failed to fetch requests");
