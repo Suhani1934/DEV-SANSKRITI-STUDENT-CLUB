@@ -49,7 +49,7 @@ const ManageDashboard = () => {
               className="shadow border-0 text-white text-center dashboard-card"
               style={{
                 background:"#1E3A8A",
-                color: idx % 2 === 0 ? "white" : "#1E3A8A",
+                color: "#fff",
                 borderRadius: "1rem",
               }}
             >

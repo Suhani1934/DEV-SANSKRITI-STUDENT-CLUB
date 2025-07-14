@@ -4,8 +4,10 @@ import { toast } from "react-toastify";
 
 const ManageStudents = () => {
   const [students, setStudents] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const studentsPerPage = 5;
+
   const token = localStorage.getItem("token");
-  const studentPerPage = 10;
 
   useEffect(() => {
     fetchStudents();
@@ -25,8 +27,22 @@ const ManageStudents = () => {
     }
   };
 
+  // Calculate pagination data
+  const totalPages = Math.ceil(students.length / studentsPerPage);
+  const startIndex = (currentPage - 1) * studentsPerPage;
+  const currentStudents = students.slice(
+    startIndex,
+    startIndex + studentsPerPage
+  );
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
   return (
-    <div>
+    <>
       <div className="table-responsive">
         <table className="table table-bordered mt-3">
           <thead className="table-primary">
@@ -41,9 +57,9 @@ const ManageStudents = () => {
             </tr>
           </thead>
           <tbody>
-            {students.map((student,index) => (
+            {currentStudents.map((student, index) => (
               <tr key={student._id}>
-                <td>{index+1}</td>
+                <td>{startIndex + index + 1}</td>
                 <td>{student.name}</td>
                 <td>{student.email}</td>
                 <td>{student.phone}</td>
@@ -53,7 +69,7 @@ const ManageStudents = () => {
                   {student.enrolledClubs.length > 0 ? (
                     <ul className="mb-0 ps-3">
                       {student.enrolledClubs.map((enrolled, idx) => (
-                        <li key={enrolled.club?._id || idx}>
+                        <li key={`${enrolled.club?._id}-${idx}`}>
                           <strong>
                             {enrolled.club?.name || "Unknown Club"}
                           </strong>
@@ -73,7 +89,28 @@ const ManageStudents = () => {
           </tbody>
         </table>
       </div>
-    </div>
+
+      {/* Pagination Controls */}
+      <div className="d-flex justify-content-between align-items-center mt-3">
+        <button
+          className="btn btn-outline-primary"
+          disabled={currentPage === 1}
+          onClick={() => handlePageChange(currentPage - 1)}
+        >
+          &laquo; Previous
+        </button>
+        <span>
+          Page <strong>{currentPage}</strong> of <strong>{totalPages}</strong>
+        </span>
+        <button
+          className="btn btn-outline-primary"
+          disabled={currentPage === totalPages}
+          onClick={() => handlePageChange(currentPage + 1)}
+        >
+          Next &raquo;
+        </button>
+      </div>
+    </>
   );
 };
 
